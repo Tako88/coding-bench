@@ -1086,7 +1086,7 @@ def table_for(run):
                                             m["wall_seconds"], kfmt(out), plus))
         score = sum(1 for c in cells if c.startswith("P"))
         rows.append([label] + cells + ["%d/5" % score, kfmt(total)])
-    note = "; ".join("* = killed at the %ss cap, file on disk graded afterwards" % c
+    note = "; ".join("`*` = killed at the %ss cap, file on disk graded afterwards" % c
                      for c in sorted(x for x in caps if x))
     return render_table(headers, rows), note
 

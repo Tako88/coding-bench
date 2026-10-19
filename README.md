@@ -106,9 +106,7 @@ the rest.
 | Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)          | F 706s 45.4k    | P 209s 15.8k    | F 302s 22.2k   | F 274s 20.3k  | F 395s 27.9k      | 1/5   | 131.6k |
 | LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)                              | F* 1800s 61.6k+ | P 979s 39.3k    | F 1114s 42.1k+ | F 489s 22.9k  | F* 1800s 57.6k+   | 1/5   | 223.5k |
 
-* = killed at the 1800s cap, file on disk graded afterwards
-
-* = killed at the 1800s cap, file on disk graded afterwards
+`*` = killed at the 1800s cap, file on disk graded afterwards
 
 Reading it: the task set does not separate models by size. Ornith-1.5-35B takes 5/5 for
 72k output tokens, while LFM2.5-24B-A2B spends 224k — three times as much — for 1/5, and
