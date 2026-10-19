@@ -11,11 +11,15 @@ its tests, and stop. Grading then happens outside its view: fixed cases from the
 spec, hundreds of randomized cases checked against a brute-force oracle, and — for
 the three tasks where the spec names one — a performance gate.
 
-- `README.md` (this file) — what it is, how to run it, what gets recorded.
-- `RUN-WITH-PI.md` — the prompt to hand to a coding agent to make it run the suite.
+- `run.py` — the runner: the queue, named runs, the evidence, the tables.
+- `models.txt` — the queue, one route per line, optional per-route cap.
+- `routes/` — one JSON per model: where it points and which weights it runs.
 - `A/` — the benchmark: sealed specs, prompts, graders, references, and its runs.
   - `A/runs/<name>/` — one named run (experiment) and its evidence.
   - `A/RESULTS-<name>.md` — that run's table. `A/MANIFEST.json` seals the instrument.
+- `README.md` (this file) — what it is, how to run it, what gets recorded.
+- `RUN-WITH-PI.md` — the prompt to hand to a coding agent to make it run the suite.
+- `LICENSE` — MIT.
 
 ## The five tasks
 
@@ -384,3 +388,8 @@ another is not a measurement anymore. Each benchmark keeps its own runs, so
 `python3 run.py run --bench B --name baseline` is a different experiment in a
 different instrument. When you change a spec's wording, say so in that benchmark's
 results — the spec is part of the instrument.
+
+## License
+
+MIT, see `LICENSE`. The tasks, graders and prompts are meant to be copied: fork
+benchmark `A/` into a `B/` with your own tasks and publish your own tables.
