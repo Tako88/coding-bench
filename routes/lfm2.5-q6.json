@@ -1,0 +1,22 @@
+{
+  "notes": "Sampler: Liquid AI's settings for their AGENTIC harnesses. The card gives several and they disagree -- AutomationBench and WebArena Verified (agent-with-tools loops, closest to this suite) use temperature 0.6 / top_p 0.95, while BFCLv4 uses 0.001, ToolSandbox and tau3-Bench 0, LiveClaw 1.0 and 'other evals' 0.6. We use the 0.6 / 0.95 pair. The knobs the agentic block does not mention keep the model's own defaults from generation_config.json -- top_k 50 and repetition_penalty 1.05 -- and min_p / presence_penalty are absent everywhere, so they are sent explicitly off (0.0), which is also vLLM's default. For reference, the model's plain generation_config / GGUF defaults are temperature 0.1 / top_k 50 / repetition 1.05 with no top_p, min_p or presence: that was the earlier setting on this route, and it is what a run started before this change (and never restarted) will still use. The strata-lfm2-q6_k.json block (temperature 0.5 / top_p 0.95 / top_k 50 / repetition 1.05) is overridden by the request.",
+  "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+  "thinking": "medium",
+  "weights": {
+    "arch": "lfm2moe",
+    "blocks": 40,
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 64,
+    "experts_active": 4,
+    "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+    "name": "LFM2.5-24B-A2B",
+    "params": "24B-A2B",
+    "quant": "Q6_K",
+    "serve": {},
+    "size_gib": 18.34,
+    "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  }
+}

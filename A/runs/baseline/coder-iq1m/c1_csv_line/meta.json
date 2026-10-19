@@ -1,0 +1,66 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 400 round trips",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
+  "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+  "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "coder-iq1m",
+  "route_file": "coder-iq1m.json",
+  "route_sampling": {
+    "contextWindow": 98304,
+    "maxTokens": 98304,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "run": "baseline",
+  "runner_sha256": "927db3001e95d3f38bd2cb500334e6897a50404420d91a3d8e245183ed25c137",
+  "sampling": null,
+  "solution_sha256": "c80b6c27feee4fa5040e57e0d6556205e5b1bbc72ca5a920e0dd1349a078adb6",
+  "stats": {
+    "calls": {
+      "bash": 10,
+      "edit": 2,
+      "read": 3,
+      "write": 6
+    },
+    "comp": 0,
+    "duration_ms": 591461,
+    "last": "Both files exist on disk and tests pass (6 tests, exit 0). Let me show the final quick confirmation of solution.py contents and print DONE.\n\nFinal run already `",
+    "out": 23592,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 21
+  },
+  "task": "c1_csv_line",
+  "thinking": "xhigh",
+  "transcript": "2026-10-18T17-31-06-549Z_01a15011-31b5-7120-9822-be6ae9c0908d.jsonl",
+  "wall_seconds": 592,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 24.2
+  },
+  "when": "2026-10-18T20:40:58"
+}

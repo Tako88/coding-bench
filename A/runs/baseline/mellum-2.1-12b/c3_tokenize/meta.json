@@ -1,0 +1,70 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "tokenize(\"a''b\"): got [\"a''b\"], want ['ab']",
+    "ok": false
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
+  "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+  "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "mellum-2.1-12b",
+  "route_file": "mellum-2.1-12b.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "4cff7c9587a63c6888276f377c1be26e041e35d28a96aa3cdac5c5efd356a15f",
+  "stats": {
+    "calls": {
+      "bash": 2,
+      "edit": 1,
+      "ls": 1,
+      "read": 2,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 301391,
+    "last": "We have a syntax error in the test data. The string ('\\\\'' \\\\'', ...) is problematic. Let's simplify the test cases to avoid complex literals. We can use raw st",
+    "out": 22151,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 2,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 10
+  },
+  "task": "c3_tokenize",
+  "thinking": "medium",
+  "transcript": "2026-10-19T09-21-14-467Z_01a15377-10e3-7467-a8ae-5f2334e7031e.jsonl",
+  "wall_seconds": 302,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.1
+  },
+  "when": "2026-10-19T12:26:16"
+}

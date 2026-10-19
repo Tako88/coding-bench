@@ -1,0 +1,70 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "fixed + 120 brute-checked + 200k in 0.73s (1.27x ref, budget 6.0x = 3.45s)",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "ornith-q4km",
+  "route_file": "ornith-q4km.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "65f24b4e8b57ec9c13f15d8f44e9746394eb12adc01b865c2e319066a833d8f1",
+  "stats": {
+    "calls": {
+      "bash": 7,
+      "edit": 3,
+      "ls": 1,
+      "read": 1,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 719503,
+    "last": "All tests pass. Both files exist on disk:\n- solution.py\n- test_solution.py\n\nThe solution:\n1. Handles all provided examples correctly\n2. Passes 3300+ random cros",
+    "out": 34523,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 15
+  },
+  "task": "c4_schedule",
+  "thinking": "medium",
+  "transcript": "2026-10-19T08-48-44-711Z_01a15359-50a7-73e2-a5c5-f401989371fb.jsonl",
+  "wall_seconds": 723,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.2
+  },
+  "when": "2026-10-19T12:00:49"
+}

@@ -1,0 +1,63 @@
+{
+  "attempts": 3,
+  "gates": {
+    "c3_200k_line": {
+      "bound_by": "floor",
+      "budget_seconds": 3.0,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.0216,
+      "samples": [
+        0.0217,
+        0.0216,
+        0.0219
+      ],
+      "task": "c3_tokenize"
+    },
+    "c4_200k_identical": {
+      "bound_by": "floor",
+      "budget_seconds": 3.0,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.1635,
+      "samples": [
+        0.1648,
+        0.1635,
+        0.1654
+      ],
+      "task": "c4_schedule"
+    },
+    "c4_200k_intervals": {
+      "bound_by": "reference",
+      "budget_seconds": 3.449,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.5748,
+      "samples": [
+        0.575,
+        0.6114,
+        0.5748
+      ],
+      "task": "c4_schedule"
+    },
+    "c5_20_stars": {
+      "bound_by": "reference",
+      "budget_seconds": 11.539,
+      "floor_seconds": 10.0,
+      "multiple": 4.5,
+      "ref_seconds": 2.5641,
+      "samples": [
+        2.5643,
+        2.5716,
+        2.5641
+      ],
+      "task": "c5_shortest_match"
+    }
+  },
+  "generated": "2026-10-18T19:02:43",
+  "host": "tako-pc",
+  "pi_version": "1.2.0",
+  "platform": "Linux-7.2.9-2-cachyos-x86_64-with-glibc2.44",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211"
+}

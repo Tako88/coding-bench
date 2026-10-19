@@ -1,0 +1,68 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "fixed + 120 brute-checked + 200k in 0.26s (0.46x ref, budget 6.0x = 3.45s)",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
+  "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+  "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "swift-1.5",
+  "route_file": "swift-1.5.json",
+  "route_sampling": {
+    "contextWindow": 98304,
+    "maxTokens": 98304,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "adc1e1b4c5a05023a515ac7e3d916f1c168ccf804e5592a0e8cc673c72c016b0",
+  "sampling": null,
+  "solution_sha256": "47b302838dff6903f2dffba4076b38129330d9324f165ae89630195044232465",
+  "stats": {
+    "calls": {
+      "bash": 1,
+      "read": 1,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 1092702,
+    "last": "All tests passed. Including:\n- All 11 examples from TASK.md\n- 8 additional edge cases (cross-checked against brute force)\n- 500 random trials against the exhaus",
+    "out": 31766,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 4
+  },
+  "task": "c4_schedule",
+  "thinking": "xhigh",
+  "transcript": "2026-10-19T06-01-02-661Z_01a152bf-c7c4-7477-b471-5ff8364bf3c3.jsonl",
+  "wall_seconds": 1095,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 8.4
+  },
+  "when": "2026-10-19T09:19:18"
+}

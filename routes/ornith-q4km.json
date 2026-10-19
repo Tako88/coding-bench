@@ -1,0 +1,22 @@
+{
+  "notes": "PolyStrata engine through llama-swap.",
+  "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "thinking": "medium",
+  "weights": {
+    "arch": "qwen35moe",
+    "blocks": 41,
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 256,
+    "experts_active": 8,
+    "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+    "name": "Ornith-1.5-35B",
+    "params": "35B",
+    "quant": "Q4_K_M",
+    "serve": {},
+    "size_gib": 20.22,
+    "source": "not recorded; gguf license MIT",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  }
+}

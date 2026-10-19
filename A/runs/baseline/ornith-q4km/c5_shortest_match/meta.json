@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 250 brute-checked + 20 stars in 0.00s (0.00x ref, budget 4.5x = 11.54s)",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "ornith-q4km",
+  "route_file": "ornith-q4km.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "a3c206eb3b884bdac1431325e711d3b64d10dc250c579174532e2f58dea1fe13",
+  "stats": {
+    "calls": {
+      "bash": 3,
+      "edit": 1,
+      "read": 1,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 298551,
+    "last": "All good. Let me provide the final summary and DONE.\n Both files exist on disk and all tests pass, including the spec examples, error cases, edge cases, and a p",
+    "out": 17427,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 9
+  },
+  "task": "c5_shortest_match",
+  "thinking": "medium",
+  "transcript": "2026-10-19T09-00-49-732Z_01a15364-60c4-7617-bbfc-fd378c895a31.jsonl",
+  "wall_seconds": 299,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.4
+  },
+  "when": "2026-10-19T12:05:48"
+}

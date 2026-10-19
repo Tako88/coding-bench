@@ -1,0 +1,53 @@
+{
+  "cap_default_seconds": 1800,
+  "created": "2026-10-18T17:40:25",
+  "files": {
+    "_oracle.py": "eeb96db892cbad789ce22c9aaae7811e36c2bf1eddea3dc376a06e6cbc3eb8e9",
+    "_probe_agentic.py": "724d19b2b737488fb0664867465fc288d92baad2dc7546ed28d7de0043edcedb",
+    "_refs/c1_csv_line.py": "247ff19518a3106c00e0c734e327c13acffe56e7d20bd52c7d0b86d2cd057119",
+    "_refs/c2_eval_expr.py": "a7fe317c863ebf5cf3830060006e49380b834eca40b501869e95547ad977890b",
+    "_refs/c3_tokenize.py": "7a3a354a21dd245b17899ef2bccb483c7c1eacb56081860e1d61736dbb369c8a",
+    "_refs/c4_schedule.py": "2163e288ea02ade7c64b13b16c9e1b9dc3b28b09f106b6870bb717a48d0deb26",
+    "_refs/c5_shortest_match.py": "220fb6323a98866f6f0ba503de24931135d1ace15645786d3d78e029e8fad51f",
+    "checks.py": "a58080013641883a9972ecd9cc4c09647d7a86f62cfce2841ea9798984e0685c",
+    "prompts/system.txt": "b23cc5141f3e40e3c0f9db0ff088c90e50ea86b52113f342f4597df648f117d3",
+    "prompts/task.txt": "04d6776512a2fb9d312b45c39f4b7ffd79d132bddb7face5aa0dcc60223e5596",
+    "tasks/c1_csv_line.md": "c190560b263acc6e1f781cea73c21922200e9b5afa6cd3ca757f1038b751548e",
+    "tasks/c2_eval_expr.md": "b7e0c184c6c439de7f1e062560c3459711b2a6eae3b3a88bda4108d203314e03",
+    "tasks/c3_tokenize.md": "0b807f0bb90f21a78e82e3d020ccca8290ac6de3ee26e1beee5e771001d6515a",
+    "tasks/c4_schedule.md": "ab502a6ceae0ad7fc8658d0b338f7fc048c3d762926568a9b216eeff7c408ee2",
+    "tasks/c5_shortest_match.md": "ded36b709edd987e298148ce002a96cbc74c1000ef1d6a675c6868ca4aba93ac",
+    "tools.txt": "f4d001af6225c4866a83f696864ba46d5c68b7b2da6d60f79f9a87efd88d72d7",
+    "validate.py": "7c8671cdb6a683a6f383cd010c54c4f65cf8270475386445b62543174741ebc9"
+  },
+  "gates": {
+    "budget_rule": "max(multiple * reference_seconds, floor_seconds), reference timed on the grading machine by checks.py --calibrate",
+    "floors_seconds": {
+      "c3_200k_line": 3.0,
+      "c4_200k_identical": 3.0,
+      "c4_200k_intervals": 3.0,
+      "c5_20_stars": 10.0
+    },
+    "multiples": {
+      "c3_200k_line": 6.0,
+      "c4_200k_identical": 6.0,
+      "c4_200k_intervals": 6.0,
+      "c5_20_stars": 4.5
+    }
+  },
+  "grade": {
+    "memory_kib": 3000000,
+    "task_alarm_seconds": 300.0,
+    "timeout_seconds": 400
+  },
+  "pi_version_at_creation": "1.2.0",
+  "round": "A",
+  "tasks": [
+    "c1_csv_line",
+    "c2_eval_expr",
+    "c3_tokenize",
+    "c4_schedule",
+    "c5_shortest_match"
+  ],
+  "tools": "read,write,edit,bash,ls,find,grep"
+}

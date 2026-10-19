@@ -1,0 +1,21 @@
+{
+  "label": "Example: any OpenAI-compatible server you run yourself",
+  "endpoint": {
+    "provider": "bench",
+    "baseUrl": "http://127.0.0.1:8080/v1",
+    "api": "openai-completions",
+    "apiKey": "local"
+  },
+  "model": {
+    "id": "local-model",
+    "contextWindow": 32768,
+    "maxTokens": 32768,
+    "reasoning": true
+  },
+  "thinking": "medium",
+  "samplingParams": {
+    "temperature": 0.5,
+    "top_p": 0.95
+  },
+  "notes": "Copy this file to routes/<your-name>.json, put the name in models.txt, then run: python3 run.py check <your-name>. apiKey accepts a literal, $ENV / ${ENV} interpolation, or a leading !command. samplingParams is what pi actually sends; samplingParamsByThinkingLevel is supported too. With a llama.cpp server, the dummy key 'local' is fine."
+}

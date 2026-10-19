@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "fixed + 600 random expressions",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
+  "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+  "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "mellum-2.1-12b",
+  "route_file": "mellum-2.1-12b.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "d59a76ed0bee8cbad6ab6834f724b914974cfe7b297ba8b3cf950bcaaa0ae6a9",
+  "stats": {
+    "calls": {
+      "bash": 1,
+      "edit": 1,
+      "read": 2,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 208510,
+    "last": "Now we should run test_solution.py again.",
+    "out": 15786,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 1,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 7
+  },
+  "task": "c2_eval_expr",
+  "thinking": "medium",
+  "transcript": "2026-10-19T09-17-45-203Z_01a15373-df72-7496-9557-2817e4ccaada.jsonl",
+  "wall_seconds": 209,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.2
+  },
+  "when": "2026-10-19T12:21:14"
+}

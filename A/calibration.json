@@ -1,0 +1,62 @@
+{
+  "attempts": 3,
+  "gates": {
+    "c3_200k_line": {
+      "bound_by": "floor",
+      "budget_seconds": 3.0,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.0218,
+      "samples": [
+        0.0219,
+        0.0218,
+        0.022
+      ],
+      "task": "c3_tokenize"
+    },
+    "c4_200k_identical": {
+      "bound_by": "floor",
+      "budget_seconds": 3.0,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.1537,
+      "samples": [
+        0.1537,
+        0.1537,
+        0.155
+      ],
+      "task": "c4_schedule"
+    },
+    "c4_200k_intervals": {
+      "bound_by": "reference",
+      "budget_seconds": 3.177,
+      "floor_seconds": 3.0,
+      "multiple": 6.0,
+      "ref_seconds": 0.5294,
+      "samples": [
+        0.5339,
+        0.5294,
+        0.5478
+      ],
+      "task": "c4_schedule"
+    },
+    "c5_20_stars": {
+      "bound_by": "reference",
+      "budget_seconds": 10.175,
+      "floor_seconds": 10.0,
+      "multiple": 4.5,
+      "ref_seconds": 2.2611,
+      "samples": [
+        2.2712,
+        2.2614,
+        2.2611
+      ],
+      "task": "c5_shortest_match"
+    }
+  },
+  "generated": "2026-10-18T17:28:53",
+  "host": "tako-pc",
+  "note": "Calibration of the machine that produced the published table. Each run writes its own A/runs/<route>/calibration.json and grades with it, so these numbers are a record, not a default.",
+  "platform": "Linux-7.2.9-2-cachyos-x86_64-with-glibc2.44",
+  "python": "3.14.8"
+}

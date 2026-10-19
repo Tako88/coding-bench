@@ -1,0 +1,66 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "fixed + 120 brute-checked + 200k in 0.25s (0.44x ref, budget 6.0x = 3.45s)",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+  "model_pattern": "llama-local/kvstream-fork",
+  "pi_model": "llama-local/kvstream-fork",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "qwen38-fork",
+  "route_file": "qwen38-fork.json",
+  "route_sampling": {
+    "contextWindow": 98304,
+    "maxTokens": 98304,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "run": "baseline",
+  "runner_sha256": "fe3459ff55b0ebeb7df5265bab7f1270754f0baa4ef848de86f570ba664c63b6",
+  "sampling": null,
+  "solution_sha256": "1f32a2cd8090919a37961f732ebafe0a2f8b2b5d4ae5f8677ecbe78f052385fb",
+  "stats": {
+    "calls": {
+      "bash": 5,
+      "edit": 3,
+      "read": 3,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 784879,
+    "last": "All passing:\n- Both files exist on disk (solution.py, test_solution.py)\n- All 11 TASK.md examples pass\n- Hand-crafted edge cases (tie-breakers at all three leve",
+    "out": 31984,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 13
+  },
+  "task": "c4_schedule",
+  "thinking": "xhigh",
+  "transcript": "2026-10-18T17-06-15-873Z_01a14ffa-72c0-73e1-992f-4964f5170b0d.jsonl",
+  "wall_seconds": 791,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.4
+  },
+  "when": "2026-10-18T20:19:27"
+}

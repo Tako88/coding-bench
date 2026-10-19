@@ -1,0 +1,32 @@
+{
+  "notes": "Same weights as the fork route at a smaller quant and context, no MTP: the stock-vs-fork comparison.",
+  "pi_model": "llama-local/Qwen3.8-27B",
+  "thinking": "xhigh",
+  "weights": {
+    "arch": "qwen35",
+    "blocks": 65,
+    "ctx": 65536,
+    "drafter": {
+      "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+      "kind": "MTP",
+      "quant": "Q4_K_S",
+      "size_gib": 1.28
+    },
+    "experts": null,
+    "experts_active": null,
+    "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+    "name": "Qwen3.8-27B",
+    "params": "27B",
+    "quant": "IQ3_XXS",
+    "serve": {
+      "batch": "512/512",
+      "cache_k": "q5_0",
+      "cache_v": "q4_1",
+      "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+    },
+    "size_gib": 10.18,
+    "source": "Unsloth, hf.co/unsloth",
+    "stack": "llama.cpp router",
+    "stack_id": "Qwen3.8-27B"
+  }
+}

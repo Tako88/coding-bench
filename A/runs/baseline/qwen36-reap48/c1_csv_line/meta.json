@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 400 round trips",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
+  "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+  "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "qwen36-reap48",
+  "route_file": "qwen36-reap48.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "cd8f8572cf2b60060a2d3d708ac0955b830740a2f3c2ad185ba400310c6fc756",
+  "stats": {
+    "calls": {
+      "bash": 3,
+      "edit": 1,
+      "read": 2,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 275664,
+    "last": "All examples from TASK.md pass. The solution is correct.\n DONE",
+    "out": 10836,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 1,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 9
+  },
+  "task": "c1_csv_line",
+  "thinking": "medium",
+  "transcript": "2026-10-19T06-41-01-360Z_01a152e4-61b0-7173-ad26-4b73bd603efc.jsonl",
+  "wall_seconds": 276,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 9.5
+  },
+  "when": "2026-10-19T09:45:37"
+}

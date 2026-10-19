@@ -1,0 +1,27 @@
+# Cell scratch. Each run keeps its own evidence; the parts that are regenerated
+# or that are large are not source.
+A/runs/*/*/*/pi.jsonl
+A/runs/*/*/*/pi.err
+A/runs/*/*/*/sessions/
+A/runs/*/*/*/__pycache__/
+A/runs/*/*/*/*.bak
+A/runs/*/*/.pi-config/
+A/__pycache__/
+__pycache__/
+*.pyc
+
+# Keep, on purpose: A/runs/*/*/meta.json (the parsed facts, grade and hashes),
+# solution.py and test_solution.py (what the model actually wrote), run.log,
+# calibration.json and queued.json.
+
+# Local probe and check scratch
+.probe/
+.probe-mellum/
+check.log
+check-xhigh.log
+runner*.log
+{routes}/
+
+# Local mechanism checks (cap/OOM probes), not results. A leading underscore marks
+# a run that is scratch; real runs get real names.
+A/runs/_*/

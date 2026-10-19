@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "cap",
+  "grade": {
+    "detail": "shortest_prefix_match('a*c', 'abcde'): got -1, want 3",
+    "ok": false
+  },
+  "host": "tako-pc",
+  "killed_at_cap": true,
+  "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+  "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "lfm2.5-q6",
+  "route_file": "lfm2.5-q6.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.05,
+      "temperature": 0.6,
+      "top_k": 50,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "9301166984d6e3bfc2c8bf366f3187fae8a49344bdef16125feb1dec12820e23",
+  "stats": {
+    "calls": {
+      "bash": 34,
+      "edit": 4,
+      "read": 1,
+      "write": 5
+    },
+    "comp": 0,
+    "duration_ms": 1797735,
+    "last": "Print works. So the issue is that match_from isn't reaching the star branch. Let me check if maybe `elem[0] == '*'` is failing because elem is a tuple of tuples",
+    "out": 57629,
+    "partial_chars": 19,
+    "reasoning": 0,
+    "rep_turns": 3,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 44
+  },
+  "task": "c5_shortest_match",
+  "thinking": "medium",
+  "transcript": "2026-10-19T12-07-27-248Z_01a1540f-3d0f-7630-8d79-07cf8832f863.jsonl",
+  "wall_seconds": 1800,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.3
+  },
+  "when": "2026-10-19T15:37:27"
+}

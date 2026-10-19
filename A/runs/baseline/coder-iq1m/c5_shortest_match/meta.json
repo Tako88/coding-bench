@@ -1,0 +1,68 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 250 brute-checked + 20 stars in 0.06s (0.02x ref, budget 4.5x = 11.54s)",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
+  "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+  "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "coder-iq1m",
+  "route_file": "coder-iq1m.json",
+  "route_sampling": {
+    "contextWindow": 98304,
+    "maxTokens": 98304,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "run": "baseline",
+  "runner_sha256": "d533c3eec41ee3ea1728437da8d0f684e36f65c40c5ab2b0f08471b3f65c582a",
+  "sampling": null,
+  "solution_sha256": "0c63357d2484b20ceb6a148ff679272c9c7297155a076057d4a3689bc78865cc",
+  "stats": {
+    "calls": {
+      "bash": 10,
+      "edit": 9,
+      "read": 2,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 736100,
+    "last": "Done. solution.py and test_solution.py exist, tests run and pass.\n\nSummary:\n- solution.py: parser + NFA (Thompson) construction with epsilon closures as bitmask",
+    "out": 26708,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 25
+  },
+  "task": "c5_shortest_match",
+  "thinking": "xhigh",
+  "transcript": "2026-10-18T18-29-34-429Z_01a15046-b85c-7731-b683-fd8b2a41167a.jsonl",
+  "wall_seconds": 738,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 26.2
+  },
+  "when": "2026-10-18T21:41:52"
+}

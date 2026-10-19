@@ -1,0 +1,11 @@
+Read TASK.md in the current directory and implement it.
+
+Your working directory is {DIR} — do everything here:
+- Write solution.py here. Python standard library only.
+- Write test_solution.py here with your own tests covering the examples and edge cases, and run it with python3 from this directory. Fix solution.py until your tests pass.
+- TASK.md is a complete specification. If something looks unclear, follow the rules and the examples literally; do not stop to ask, and do not report the task as ambiguous.
+- Do not read, search for, or copy any solution, test suite or grading code. The only files you may read are the ones you created plus your own TASK.md.
+
+Important: you must actually create the files. Use the write tool to create solution.py and test_solution.py on disk. Writing the code only in your reasoning, or reporting the task as done, is not a solution — the files must exist on disk and your tests must have been run when you finish.
+
+Finish by running `python3 test_solution.py` one last time, then print a single line: DONE, or BLOCKED <reason> if the task is impossible.

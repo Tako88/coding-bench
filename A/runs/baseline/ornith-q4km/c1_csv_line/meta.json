@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "BLOCKED",
+  "grade": {
+    "detail": "fixed + 400 round trips",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "ornith-q4km",
+  "route_file": "ornith-q4km.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "sampling": null,
+  "solution_sha256": "67499e187fcf799ecb8b43c3fb966ccafb01db73d32dda8050da9bb167e4b412",
+  "stats": {
+    "calls": {
+      "bash": 2,
+      "edit": 3,
+      "read": 3,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 58496,
+    "last": "Wait, the task says finish by running `python3 test_solution.py` one last time, then print a single line: DONE or BLOCKED. I've done that. Let me print DONE.\n D",
+    "out": 3715,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 12
+  },
+  "task": "c1_csv_line",
+  "thinking": "medium",
+  "transcript": "2026-10-19T08-43-07-061Z_01a15354-29b5-7318-9c05-9fdea9131ad0.jsonl",
+  "wall_seconds": 59,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 18.1
+  },
+  "when": "2026-10-19T11:44:06"
+}

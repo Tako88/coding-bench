@@ -1,0 +1,25 @@
+{
+  "notes": "Small coder-flavoured model; it passed this suite's c1 in 179s during the build.",
+  "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+  "thinking": "xhigh",
+  "weights": {
+    "arch": "qwen4exp",
+    "blocks": 48,
+    "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+    "ctx": 98304,
+    "drafter": null,
+    "experts": 256,
+    "experts_active": 10,
+    "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+    "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+    "params": null,
+    "quant": "IQ1_M",
+    "serve": {
+      "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+    },
+    "size_gib": 54.4,
+    "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  }
+}

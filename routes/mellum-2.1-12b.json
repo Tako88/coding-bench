@@ -1,0 +1,27 @@
+{
+  "notes": "This route is Mellum2.1 (verified: the local Q6_K's sha256 equals the x-linked-etag of JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF, and the file's general.name says so). Sampler: the 2.1 card's quickstart preset -- top_p 0.95, top_k 20, with temperature raised from 0.6 to 1.0 because the card's evaluation note says its AGENTIC benchmarks were run 'with each model's default sampling (temperature 1.0 for Mellum2.1)'. The card specifies no min_p or presence, so those are explicit off, and generation_config.json declares no sampling at all, which leaves the quickstart as the only published preset and 1.0 as the only agentic-specific number. Alternative reading, one edit away: temperature 1.0 with top_p/top_k left at the engine defaults. NOTE when comparing to JetBrains' published agentic numbers (SWE-bench Verified 47.0, Terminal-Bench 2.1 17.4): they ran through Pi v0.73.1 with shell and file tools at 114k context and up to 16k tokens per turn, whereas this suite uses 131072 context and no per-turn limit.",
+  "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+  "thinking": "medium",
+  "weights": {
+    "arch": "mellum",
+    "blocks": 28,
+    "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 64,
+    "experts_active": 8,
+    "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+    "name": "Mellum2.1-12B-A2.5B-Thinking",
+    "params": "12B-A2.5B",
+    "quant": "Q6_K",
+    "serve": {
+      "batch": "512/512",
+      "cache_k": "q5_0",
+      "cache_v": "q4_1"
+    },
+    "size_gib": 10.13,
+    "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+    "stack": "llama.cpp router",
+    "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+  }
+}

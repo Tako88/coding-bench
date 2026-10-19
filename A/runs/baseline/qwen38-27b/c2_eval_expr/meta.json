@@ -1,0 +1,67 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "cap",
+  "grade": {
+    "detail": "negative base, fractional exponent: raised TypeError instead of ValueError",
+    "ok": false
+  },
+  "host": "tako-pc",
+  "killed_at_cap": true,
+  "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
+  "model_pattern": "llama-local/Qwen3.8-27B",
+  "pi_model": "llama-local/Qwen3.8-27B",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "qwen38-27b",
+  "route_file": "qwen38-27b.json",
+  "route_sampling": {
+    "contextWindow": 65536,
+    "maxTokens": 65536,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "adc1e1b4c5a05023a515ac7e3d916f1c168ccf804e5592a0e8cc673c72c016b0",
+  "sampling": null,
+  "solution_sha256": "3a3075ee1d9c57cbe34ad690adf7190d86ad79a1c28850bbd52e136182d5513f",
+  "stats": {
+    "calls": {
+      "read": 3,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 1627270,
+    "last": "Next, write test_solution.py covering all the examples in TASK.md and a bunch of edge cases.\n Now the test suite covering all TASK.md examples plus edge cases:\n",
+    "out": 40219,
+    "partial_chars": 6914,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 5
+  },
+  "task": "c2_eval_expr",
+  "thinking": "xhigh",
+  "transcript": "2026-10-18T19-03-47-410Z_01a15066-0bd2-70d2-a2a1-c128ac0122a1.jsonl",
+  "wall_seconds": 1800,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.3
+  },
+  "when": "2026-10-18T22:33:47"
+}

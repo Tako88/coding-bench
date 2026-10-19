@@ -1,0 +1,17 @@
+# Which models to test, in order. One route per line:  <route-name> [cap-seconds]
+# The route name is a file in routes/<name>.json. The cap defaults to 1800s.
+
+# llama.cpp router / fork
+qwen38-fork
+coder-iq1m
+qwen38-27b
+swift-1.5
+qwen36-reap48
+
+# PolyStrata engine
+qwen36-ud-q4km
+ornith-q4km
+
+# long-running ones last
+mellum-2.1-12b
+lfm2.5-q6

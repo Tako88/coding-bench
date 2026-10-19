@@ -1,0 +1,69 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 400 round trips",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
+  "model_pattern": "llama-local/Qwen3.8-27B",
+  "pi_model": "llama-local/Qwen3.8-27B",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "qwen38-27b",
+  "route_file": "qwen38-27b.json",
+  "route_sampling": {
+    "contextWindow": 65536,
+    "maxTokens": 65536,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "adc1e1b4c5a05023a515ac7e3d916f1c168ccf804e5592a0e8cc673c72c016b0",
+  "sampling": null,
+  "solution_sha256": "1bb861cc50faa9c67d961bb6530c5cf38721909c6032047110f1f4015acb61f3",
+  "stats": {
+    "calls": {
+      "bash": 3,
+      "edit": 2,
+      "read": 1,
+      "write": 3
+    },
+    "comp": 0,
+    "duration_ms": 222450,
+    "last": "All done. solution.py implements parse_csv_line according to the spec, test_solution.py contains 34 tests (all examples from TASK.md + edge cases), and all of t",
+    "out": 6673,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 10
+  },
+  "task": "c1_csv_line",
+  "thinking": "xhigh",
+  "transcript": "2026-10-18T19-00-03-957Z_01a15062-a2f4-7764-be54-1ae3c5cad69f.jsonl",
+  "wall_seconds": 223,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.3
+  },
+  "when": "2026-10-18T22:03:46"
+}
