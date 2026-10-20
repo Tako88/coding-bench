@@ -4,155 +4,36 @@
     {
       "base_url": "http://127.0.0.1:8001/v1",
       "cap_seconds": 1800,
-      "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-      "model_pattern": "llama-local/kvstream-fork",
-      "pi_model": "llama-local/kvstream-fork",
-      "route": "qwen38-fork",
+      "label": "Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)",
+      "model_pattern": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+      "pi_model": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+      "route": "nemotron-iq2_xxs",
       "sampling": {
         "min_p": 0.0,
         "presence_penalty": 0.0,
         "repeat_penalty": 1.0,
         "temperature": 1.0,
-        "top_k": 20,
         "top_p": 0.95
       },
-      "thinking": "xhigh"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-      "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-      "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-      "route": "coder-iq1m",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 1.0,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "xhigh"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-      "model_pattern": "llama-local/Qwen3.8-27B",
-      "pi_model": "llama-local/Qwen3.8-27B",
-      "route": "qwen38-27b",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 1.0,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "xhigh"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-      "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-      "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-      "route": "swift-1.5",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 1.0,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "xhigh"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-      "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-      "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-      "route": "qwen36-reap48",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 0.6,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "medium"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-      "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-      "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-      "route": "qwen36-ud-q4km",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 0.6,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "medium"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-      "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-      "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-      "route": "ornith-q4km",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 0.6,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "medium"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-      "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-      "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-      "route": "mellum-2.1-12b",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 1.0,
-        "top_k": 20,
-        "top_p": 0.95
-      },
-      "thinking": "medium"
-    },
-    {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-      "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-      "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-      "route": "lfm2.5-q6",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.05,
-        "temperature": 0.6,
-        "top_k": 50,
-        "top_p": 0.95
-      },
-      "thinking": "medium"
+      "thinking": "medium",
+      "weights": {
+        "arch": "nemotron_h_moe",
+        "blocks": 88,
+        "caveat": "served with --host-experts (routed experts cached in host RAM), so it costs ~15-20 GB of RAM rather than VRAM; the gguf's own size_label is the string 345x8.1B",
+        "ctx": 131072,
+        "drafter": null,
+        "experts": 496,
+        "experts_active": 9,
+        "file": "/home/tako/dev/PolyStrata-data/models/nemotron-iq2_xxs/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-IQ2_XXS.gguf",
+        "name": "Nemotron-3.5-Bolt-74B-A9B",
+        "params": "74B-A9B",
+        "quant": "IQ2_XXS",
+        "serve": {},
+        "size_gib": 20.51,
+        "source": "NVIDIA, quantized by Unsloth: hf.co/unsloth/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-GGUF",
+        "stack": "PolyStrata",
+        "stack_id": "strata-poly"
+      }
     }
   ],
   "history": [
@@ -776,11 +657,169 @@
         }
       ],
       "replaced": "2026-10-19T09:47:03"
+    },
+    {
+      "entries": [
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+          "model_pattern": "llama-local/kvstream-fork",
+          "pi_model": "llama-local/kvstream-fork",
+          "route": "qwen38-fork",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "xhigh"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
+          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+          "route": "coder-iq1m",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "xhigh"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
+          "model_pattern": "llama-local/Qwen3.8-27B",
+          "pi_model": "llama-local/Qwen3.8-27B",
+          "route": "qwen38-27b",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "xhigh"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
+          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+          "route": "swift-1.5",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "xhigh"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
+          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+          "route": "qwen36-reap48",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 0.6,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "medium"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+          "route": "qwen36-ud-q4km",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 0.6,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "medium"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
+          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+          "route": "ornith-q4km",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 0.6,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "medium"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
+          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+          "route": "mellum-2.1-12b",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "medium"
+        },
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+          "route": "lfm2.5-q6",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.05,
+            "temperature": 0.6,
+            "top_k": 50,
+            "top_p": 0.95
+          },
+          "thinking": "medium"
+        }
+      ],
+      "replaced": "2026-10-19T14:19:17"
     }
   ],
   "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
   "run": "baseline",
-  "runner_sha256": "2a932d5e3d23a5d3063536196752858b419d74662af4e36af4907cb87275e24f",
+  "runner_sha256": "f442df79be711f9266994daba51c26280b0cc663bc2ab9a570cac19106ff5e37",
   "started": "2026-10-18T19:01:47",
-  "updated": "2026-10-19T14:19:17"
+  "updated": "2026-10-20T10:18:47"
 }

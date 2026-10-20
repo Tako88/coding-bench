@@ -15,3 +15,4 @@ ornith-q4km
 # long-running ones last
 mellum-2.1-12b
 lfm2.5-q6
+nemotron-iq2_xxs

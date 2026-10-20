@@ -1,0 +1,87 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 600 random expressions",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+  "pi_model": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+  "pi_version": "1.2.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "nemotron-iq2_xxs",
+  "route_file": "nemotron-iq2_xxs.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "f442df79be711f9266994daba51c26280b0cc663bc2ab9a570cac19106ff5e37",
+  "sampling": null,
+  "solution_sha256": "c1cc7f51de07f88f307c4a7721e05d76ea06acc831c3bcf691e01cc1488ad894",
+  "stats": {
+    "calls": {
+      "bash": 4,
+      "edit": 6,
+      "ls": 1,
+      "read": 2,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 836193,
+    "last": "Everything works. 2^-3^2 = 2^(-9) = 0.001953125. Correct per right associativity and unary binding looser than ^.\n\nDone. Print DONE. All checks pass, including ",
+    "out": 13210,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 1,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 15
+  },
+  "task": "c2_eval_expr",
+  "thinking": "medium",
+  "transcript": "2026-10-19T20-53-36-054Z_01a155f0-f0b5-7187-9140-e32bef94aae0.jsonl",
+  "wall_seconds": 837,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 1.1
+  },
+  "weights": {
+    "arch": "nemotron_h_moe",
+    "blocks": 88,
+    "caveat": "served with --host-experts (routed experts cached in host RAM), so it costs ~15-20 GB of RAM rather than VRAM; the gguf's own size_label is the string 345x8.1B",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 496,
+    "experts_active": 9,
+    "file": "/home/tako/dev/PolyStrata-data/models/nemotron-iq2_xxs/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-IQ2_XXS.gguf",
+    "name": "Nemotron-3.5-Bolt-74B-A9B",
+    "params": "74B-A9B",
+    "quant": "IQ2_XXS",
+    "serve": {},
+    "size_gib": 20.51,
+    "source": "NVIDIA, quantized by Unsloth: hf.co/unsloth/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-GGUF",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  },
+  "when": "2026-10-20T00:07:32"
+}
