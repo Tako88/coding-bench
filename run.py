@@ -734,10 +734,63 @@ def cmd_check(args):
     if args.name:
         for route_name, _cap in selected(args.routes):
             rec = recorded_config(route_dir(args.name, route_name)) or {}
-            if rec.get("label") and rec["label"] != route_label(load_route(route_name)):
+            try:
+                current = route_label(load_route(route_name))
+            except SystemExit:
+                continue            # route file deleted; there is nothing left to compare
+            if rec.get("label") and rec["label"] != current:
                 print("note: %s cells are recorded as %r, but the route file now says %r "
                       "- the tables show the route file and say so"
                       % (route_name, rec["label"], route_label(load_route(route_name))))
+
+
+def run_routes(run):
+    """The routes this run covers, in the order it ran them: [(route, plan entry)].
+
+    Read from the run's own record, so a summary describes what happened even after
+    models.txt, routes/ or a resume changed underneath it. Sources, first seen wins:
+    the plans in queued.json (superseded ones under "history" first, because a
+    resume replaces the live plan with the routes *it* was started for), then any
+    route directory that has cells but no plan entry.
+    """
+    root = run_root(run)
+    names, by_name = [], {}
+    path = os.path.join(root, "queued.json")
+    if os.path.exists(path):
+        try:
+            plan = json.loads(read(path))
+        except ValueError:
+            plan = {}
+        blocks = list(plan.get("history") or []) + [{"entries": plan.get("entries") or []}]
+        for block in blocks:
+            for e in block.get("entries") or []:
+                name = e.get("route")
+                if name and name not in by_name:
+                    names.append(name)
+                    by_name[name] = e
+    if os.path.isdir(root):
+        for name in sorted(os.listdir(root)):
+            if name in by_name or not os.path.isdir(os.path.join(root, name)):
+                continue
+            if any(os.path.exists(os.path.join(root, name, t, "meta.json")) for t in TASKS):
+                names.append(name)
+                by_name[name] = {}
+    return [(n, by_name[n]) for n in names]
+
+
+def run_label(run, route_name, entry=None):
+    """Row name: the route file if it still exists, else the name the run recorded.
+
+    A route can be deleted from routes/ after its cells ran (its model left pi's
+    config); the row must still carry the name those cells ran under. The run's own
+    plan comes before the cells because a cell records the label it was started
+    with, and the plan may have been resolved more recently.
+    """
+    try:
+        return route_label(load_route(route_name))
+    except SystemExit:
+        rec = recorded_config(route_dir(run, route_name)) or {}
+        return (entry or {}).get("label") or rec.get("label") or route_name
 
 
 def recorded_config(run_dir):
@@ -979,7 +1032,8 @@ def cmd_status(args):
     for run in runs:
         total = passed = 0
         print("run %s (benchmark %s)" % (run, BENCH))
-        for route_name, cap in load_queue():
+        routes = run_routes(run) or [(n, {}) for n, _c in load_queue()]
+        for route_name, _entry in routes:
             rdir = route_dir(run, route_name)
             marks = []
             for task in TASKS:
@@ -1031,25 +1085,30 @@ def render_table(headers, rows):
 
 
 def sampler_table(run):
-    """The sampler each route actually ran with, from the run's snapshot."""
-    path = os.path.join(run_root(run), "queued.json")
-    if not os.path.exists(path):
-        return ""
+    """The sampler each route actually ran with.
+
+    Rows come from the run's own record (run_routes), not from the live queue or
+    from queued.json's current plan: a resume replaces that plan with the routes it
+    was started for, and reading it left the table showing only the last resume's
+    route while the score table showed the whole run.
+    """
     keys = ["temperature", "top_p", "top_k", "min_p", "presence_penalty", "repeat_penalty"]
     short = {"presence_penalty": "presence", "repeat_penalty": "repeat"}
     headers = ["model", "sampling from"] + [short.get(k, k) for k in keys] + ["thinking", "cap"]
     rows = []
-    for e in json.loads(read(path))["entries"]:
+    for route_name, entry in run_routes(run):
         # recorded cells win over the start-of-run plan: they are what actually ran
-        rec = recorded_config(route_dir(run, e["route"])) or {}
+        rec = recorded_config(route_dir(run, route_name)) or {}
         s = (rec.get("route_sampling") or {}).get("samplingParams") if rec else None
         if s is None:
-            s = e.get("sampling") or {}
+            s = entry.get("sampling") or {}
         source = rec.get("route_sampling_source") or ("request" if s else "engine default")
-        rows.append([entry_label(e), source]
+        rows.append([run_label(run, route_name, entry), source]
                     + [s.get(k, "-") for k in keys]
-                    + [rec.get("thinking") or e.get("thinking") or "-",
-                       "%ss" % (rec.get("cap_seconds") or e.get("cap_seconds") or "-")])
+                    + [rec.get("thinking") or entry.get("thinking") or "-",
+                       "%ss" % (rec.get("cap_seconds") or entry.get("cap_seconds") or "-")])
+    if not rows:
+        return ""
     return render_table(headers, rows)
 
 
@@ -1063,12 +1122,12 @@ def kfmt(n):
 
 
 def table_for(run):
-    """One row per queued route: verdict, wall clock and output tokens per task."""
+    """One row per route in the run: verdict, wall clock and output tokens per task."""
     headers = ["model"] + TASKS + ["score", "out"]
     rows, caps = [], set()
-    for route_name, _cap in load_queue():
+    for route_name, entry in run_routes(run):
         rdir = route_dir(run, route_name)
-        cells, label, total = [], entry_label({"route": route_name}), 0
+        cells, label, total = [], run_label(run, route_name, entry), 0
         for task in TASKS:
             meta = os.path.join(rdir, task, "meta.json")
             if not os.path.exists(meta):
@@ -1094,10 +1153,13 @@ def table_for(run):
 def models_table(run):
     """Provenance for the rows above: the weights, the drafter and the stack.
 
-    Read from the route files rather than from the cells, because the question it
-    answers is "what did this row run", and the route file is where that is
-    written once. The score table's names come from the same resolver, so the two
-    tables cannot disagree about which model a row is.
+    Read from the run's own record first (the weights block written into each
+    cell's meta.json and into the run's plan), because the question it answers is
+    "what did this row run". A route file is only the fallback: routes/ is edited
+    between runs and a route that left pi's config is deleted, and neither may
+    change or delete a row of a run that already happened. The score table's names
+    come from the same resolver, so the two tables cannot disagree about which
+    model a row is.
 
     File paths, source repos and per-file caveats are deliberately not printed
     here: they stay in routes/<name>.json, which is already the record. Prose in a
@@ -1106,11 +1168,16 @@ def models_table(run):
     headers = ["model", "params", "quant", "GiB", "drafter", "arch (blocks / experts)",
                "ctx", "served by"]
     rows = []
-    for route_name, _cap in load_queue():
-        route = load_route(route_name)
-        m = route_weights(route)
+    for route_name, entry in run_routes(run):
+        rec = recorded_config(route_dir(run, route_name)) or {}
+        m = rec.get("weights") or entry.get("weights") or {}
         if not m:
-            rows.append([route_label(route)] + ["-"] * (len(headers) - 1))
+            try:
+                m = route_weights(load_route(route_name))
+            except SystemExit:
+                m = {}
+        if not m:
+            rows.append([run_label(run, route_name, entry)] + ["-"] * (len(headers) - 1))
             continue
         d = m.get("drafter") or {}
         drafter = "-"
@@ -1127,7 +1194,7 @@ def models_table(run):
             arch += " / %d exp" % m["experts"]
             if m.get("experts_active"):
                 arch += " (%d active)" % m["experts_active"]
-        rows.append([m.get("name") or route_label(route), m.get("params") or "-",
+        rows.append([m.get("name") or run_label(run, route_name, entry), m.get("params") or "-",
                      m.get("quant") or "-", "%.2f" % m["size_gib"] if m.get("size_gib") else "-",
                      drafter, arch, str(m.get("ctx") or "-"), m.get("stack") or "-"])
     return render_table(headers, rows)

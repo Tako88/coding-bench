@@ -1,825 +1,1854 @@
 {
-  "bench": "A",
-  "entries": [
+ "backfilled": {
+  "from": "route files as committed in f4f194c",
+  "why": "planned before routes carried a weights block; the routes have since been deleted"
+ },
+ "bench": "A",
+ "entries": [
+  {
+   "base_url": "http://127.0.0.1:8001/v1",
+   "cap_seconds": 1800,
+   "label": "Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)",
+   "model_pattern": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+   "pi_model": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
+   "route": "nemotron-iq2_xxs",
+   "sampling": {
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "temperature": 1.0,
+    "top_p": 0.95
+   },
+   "thinking": "medium",
+   "weights": {
+    "arch": "nemotron_h_moe",
+    "blocks": 88,
+    "caveat": "served with --host-experts (routed experts cached in host RAM), so it costs ~15-20 GB of RAM rather than VRAM; the gguf's own size_label is the string 345x8.1B",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 496,
+    "experts_active": 9,
+    "file": "/home/tako/dev/PolyStrata-data/models/nemotron-iq2_xxs/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-IQ2_XXS.gguf",
+    "name": "Nemotron-3.5-Bolt-74B-A9B",
+    "params": "74B-A9B",
+    "quant": "IQ2_XXS",
+    "serve": {},
+    "size_gib": 20.51,
+    "source": "NVIDIA, quantized by Unsloth: hf.co/unsloth/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-GGUF",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+   }
+  }
+ ],
+ "history": [
+  {
+   "entries": [
     {
-      "base_url": "http://127.0.0.1:8001/v1",
-      "cap_seconds": 1800,
-      "label": "Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)",
-      "model_pattern": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
-      "pi_model": "polystrata-nemotron/nemotron-3.5-bolt-74b-a9b-iq2_xxs",
-      "route": "nemotron-iq2_xxs",
-      "sampling": {
-        "min_p": 0.0,
-        "presence_penalty": 0.0,
-        "repeat_penalty": 1.0,
-        "temperature": 1.0,
-        "top_p": 0.95
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+     "model_pattern": "llama-local/kvstream-fork",
+     "pi_model": "llama-local/kvstream-fork",
+     "route": "qwen38-fork",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head (blk.64.nextn in the target file)",
+       "size_gib": null
       },
-      "thinking": "medium",
-      "weights": {
-        "arch": "nemotron_h_moe",
-        "blocks": 88,
-        "caveat": "served with --host-experts (routed experts cached in host RAM), so it costs ~15-20 GB of RAM rather than VRAM; the gguf's own size_label is the string 345x8.1B",
-        "ctx": 131072,
-        "drafter": null,
-        "experts": 496,
-        "experts_active": 9,
-        "file": "/home/tako/dev/PolyStrata-data/models/nemotron-iq2_xxs/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-IQ2_XXS.gguf",
-        "name": "Nemotron-3.5-Bolt-74B-A9B",
-        "params": "74B-A9B",
-        "quant": "IQ2_XXS",
-        "serve": {},
-        "size_gib": 20.51,
-        "source": "NVIDIA, quantized by Unsloth: hf.co/unsloth/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-GGUF",
-        "stack": "PolyStrata",
-        "stack_id": "strata-poly"
-      }
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+      "name": "Qwen3.8-27B (ASCII-Condensed)",
+      "params": "27B",
+      "quant": "UD-IQ4_XS",
+      "serve": {
+       "batch": "1024/256",
+       "cache_k": "q8_0",
+       "cache_v": "q4_0",
+       "draft_cache": "q8_0/q4_0",
+       "kv_resident": "192 MiB prefill / 384 MiB decode",
+       "spec": "draft-mtp, probabilistic"
+      },
+      "size_gib": 12.63,
+      "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+      "stack": "kv-stream fork",
+      "stack_id": "kvstream-fork"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+     "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "route": "coder-iq1m",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen4exp",
+      "blocks": 48,
+      "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+      "ctx": 98304,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 10,
+      "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+      "params": null,
+      "quant": "IQ1_M",
+      "serve": {
+       "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+      },
+      "size_gib": 54.4,
+      "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)",
+     "model_pattern": "llama-local/Qwen3.8-27B",
+     "pi_model": "llama-local/Qwen3.8-27B",
+     "route": "qwen38-27b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 65536,
+      "drafter": {
+       "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+       "kind": "MTP",
+       "quant": "Q4_K_S",
+       "size_gib": 1.28
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+      "name": "Qwen3.8-27B",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+      },
+      "size_gib": 10.18,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx)",
+     "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "route": "swift-1.5",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "caveat": "the gguf's general.file_type says MOSTLY_BF16, contradicting its IQ3_XXS name - do not quote file_type for this file",
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Swift-1.5-Qwen3.8-27B/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf",
+      "name": "Swift-1.5-Qwen3.8-27B GSQ-RCO",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3"
+      },
+      "size_gib": 9.73,
+      "source": "not recorded; gguf general.name 'Swift15-GSQfix-V1MIX-ISTAalloc-IQ3_XXS MTP', license 'other'",
+      "stack": "llama.cpp router",
+      "stack_id": "Swift-1.5-Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "route": "qwen36-reap48",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": {
+       "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/dflash-qwen36-35b-a3b-Q6_K.gguf",
+       "kind": "DFlash",
+       "quant": "Q6_K",
+       "size_gib": 0.31
+      },
+      "experts": 133,
+      "experts_active": 8,
+      "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/Qwen3.6-35B-A3B-REAP-48-v2.gguf",
+      "name": "Qwen3.6-35B-A3B REAP-48 v2",
+      "params": "35B-A3B",
+      "quant": "Q4_K_M",
+      "serve": {
+       "batch": "1024/1024",
+       "cache_k": "bf16",
+       "cache_v": "bf16",
+       "n_cpu_moe": 8,
+       "spec": "draft-dflash, n-max 3, draft on GPU"
+      },
+      "size_gib": 8.78,
+      "source": "REAP-48 prune of Qwen3.6-35B-A3B (256 experts -> 133); the pruner's repo is not recorded",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.6-35B-A3B-REAP-48-v2"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "route": "qwen36-ud-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/qwen36-UD-Q4_K_M/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "name": "Qwen3.6-35B-A3B",
+      "params": "35B-A3B",
+      "quant": "UD-Q4_K_M",
+      "serve": {},
+      "size_gib": 20.61,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "route": "ornith-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 41,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+      "name": "Ornith-1.5-35B",
+      "params": "35B",
+      "quant": "Q4_K_M",
+      "serve": {},
+      "size_gib": 20.22,
+      "source": "not recorded; gguf license MIT",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "route": "mellum-2.1-12b",
+     "sampling": null,
+     "thinking": "medium",
+     "weights": {
+      "arch": "mellum",
+      "blocks": 28,
+      "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 8,
+      "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+      "name": "Mellum2.1-12B-A2.5B-Thinking",
+      "params": "12B-A2.5B",
+      "quant": "Q6_K",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1"
+      },
+      "size_gib": 10.13,
+      "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+      "stack": "llama.cpp router",
+      "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "route": "lfm2.5-q6",
+     "sampling": {
+      "repeat_penalty": 1.05,
+      "temperature": 0.1,
+      "top_k": 50,
+      "top_p": 1.0
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "lfm2moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 4,
+      "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+      "name": "LFM2.5-24B-A2B",
+      "params": "24B-A2B",
+      "quant": "Q6_K",
+      "serve": {},
+      "size_gib": 18.34,
+      "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
     }
-  ],
-  "history": [
+   ],
+   "replaced": "2026-10-18T19:01:47"
+  },
+  {
+   "entries": [
     {
-      "entries": [
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-          "model_pattern": "llama-local/kvstream-fork",
-          "pi_model": "llama-local/kvstream-fork",
-          "route": "qwen38-fork",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "route": "coder-iq1m",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-          "model_pattern": "llama-local/Qwen3.8-27B",
-          "pi_model": "llama-local/Qwen3.8-27B",
-          "route": "qwen38-27b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "route": "swift-1.5",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "route": "qwen36-reap48",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "route": "qwen36-ud-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "route": "ornith-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "route": "mellum-2.1-12b",
-          "sampling": null,
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "route": "lfm2.5-q6",
-          "sampling": {
-            "repeat_penalty": 1.05,
-            "temperature": 0.1,
-            "top_k": 50,
-            "top_p": 1.0
-          },
-          "thinking": "medium"
-        }
-      ],
-      "replaced": "2026-10-18T19:01:47"
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+     "model_pattern": "llama-local/kvstream-fork",
+     "pi_model": "llama-local/kvstream-fork",
+     "route": "qwen38-fork",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head (blk.64.nextn in the target file)",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+      "name": "Qwen3.8-27B (ASCII-Condensed)",
+      "params": "27B",
+      "quant": "UD-IQ4_XS",
+      "serve": {
+       "batch": "1024/256",
+       "cache_k": "q8_0",
+       "cache_v": "q4_0",
+       "draft_cache": "q8_0/q4_0",
+       "kv_resident": "192 MiB prefill / 384 MiB decode",
+       "spec": "draft-mtp, probabilistic"
+      },
+      "size_gib": 12.63,
+      "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+      "stack": "kv-stream fork",
+      "stack_id": "kvstream-fork"
+     }
     },
     {
-      "entries": [
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-          "model_pattern": "llama-local/kvstream-fork",
-          "pi_model": "llama-local/kvstream-fork",
-          "route": "qwen38-fork",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "route": "coder-iq1m",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-          "model_pattern": "llama-local/Qwen3.8-27B",
-          "pi_model": "llama-local/Qwen3.8-27B",
-          "route": "qwen38-27b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "route": "swift-1.5",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "route": "qwen36-reap48",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "route": "qwen36-ud-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "route": "ornith-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "route": "mellum-2.1-12b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "route": "lfm2.5-q6",
-          "sampling": {
-            "repeat_penalty": 1.05,
-            "temperature": 0.1,
-            "top_k": 50,
-            "top_p": 1.0
-          },
-          "thinking": "medium"
-        }
-      ],
-      "replaced": "2026-10-19T08:30:49"
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+     "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "route": "coder-iq1m",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen4exp",
+      "blocks": 48,
+      "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+      "ctx": 98304,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 10,
+      "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+      "params": null,
+      "quant": "IQ1_M",
+      "serve": {
+       "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+      },
+      "size_gib": 54.4,
+      "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
     },
     {
-      "entries": [
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-          "model_pattern": "llama-local/kvstream-fork",
-          "pi_model": "llama-local/kvstream-fork",
-          "route": "qwen38-fork",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "route": "coder-iq1m",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-          "model_pattern": "llama-local/Qwen3.8-27B",
-          "pi_model": "llama-local/Qwen3.8-27B",
-          "route": "qwen38-27b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "route": "swift-1.5",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "route": "qwen36-reap48",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "route": "qwen36-ud-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "route": "ornith-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "route": "mellum-2.1-12b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "route": "lfm2.5-q6",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.05,
-            "temperature": 0.1,
-            "top_k": 50,
-            "top_p": 1.0
-          },
-          "thinking": "medium"
-        }
-      ],
-      "replaced": "2026-10-19T09:28:15"
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)",
+     "model_pattern": "llama-local/Qwen3.8-27B",
+     "pi_model": "llama-local/Qwen3.8-27B",
+     "route": "qwen38-27b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 65536,
+      "drafter": {
+       "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+       "kind": "MTP",
+       "quant": "Q4_K_S",
+       "size_gib": 1.28
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+      "name": "Qwen3.8-27B",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+      },
+      "size_gib": 10.18,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.8-27B"
+     }
     },
     {
-      "entries": [
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-          "model_pattern": "llama-local/kvstream-fork",
-          "pi_model": "llama-local/kvstream-fork",
-          "route": "qwen38-fork",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "route": "coder-iq1m",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-          "model_pattern": "llama-local/Qwen3.8-27B",
-          "pi_model": "llama-local/Qwen3.8-27B",
-          "route": "qwen38-27b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "route": "swift-1.5",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "route": "qwen36-reap48",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "route": "qwen36-ud-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "route": "ornith-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "route": "mellum-2.1-12b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "route": "lfm2.5-q6",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.05,
-            "temperature": 0.6,
-            "top_k": 50,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        }
-      ],
-      "replaced": "2026-10-19T09:47:03"
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx)",
+     "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "route": "swift-1.5",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "caveat": "the gguf's general.file_type says MOSTLY_BF16, contradicting its IQ3_XXS name - do not quote file_type for this file",
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Swift-1.5-Qwen3.8-27B/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf",
+      "name": "Swift-1.5-Qwen3.8-27B GSQ-RCO",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3"
+      },
+      "size_gib": 9.73,
+      "source": "not recorded; gguf general.name 'Swift15-GSQfix-V1MIX-ISTAalloc-IQ3_XXS MTP', license 'other'",
+      "stack": "llama.cpp router",
+      "stack_id": "Swift-1.5-Qwen3.8-27B"
+     }
     },
     {
-      "entries": [
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
-          "model_pattern": "llama-local/kvstream-fork",
-          "pi_model": "llama-local/kvstream-fork",
-          "route": "qwen38-fork",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-Flash-Next-Coder IQ1_M (PolyStrata, 98304 ctx)",
-          "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
-          "route": "coder-iq1m",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.8-27B IQ3_XXS (llama.cpp router, 65536 ctx)",
-          "model_pattern": "llama-local/Qwen3.8-27B",
-          "pi_model": "llama-local/Qwen3.8-27B",
-          "route": "qwen38-27b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Swift-1.5-Qwen3.8-27B (llama.cpp router, 98304 ctx)",
-          "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
-          "route": "swift-1.5",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "xhigh"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B REAP-48 v2 + DFlash (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
-          "route": "qwen36-reap48",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
-          "route": "qwen36-ud-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Ornith-1.5-35B-A3B Q4_K_M (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
-          "route": "ornith-q4km",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 0.6,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "Mellum2.1-12B-A2.5B-Thinking (llama.cpp router, 131072 ctx)",
-          "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
-          "route": "mellum-2.1-12b",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.0,
-            "temperature": 1.0,
-            "top_k": 20,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        },
-        {
-          "base_url": "http://127.0.0.1:8001/v1",
-          "cap_seconds": 1800,
-          "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
-          "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
-          "route": "lfm2.5-q6",
-          "sampling": {
-            "min_p": 0.0,
-            "presence_penalty": 0.0,
-            "repeat_penalty": 1.05,
-            "temperature": 0.6,
-            "top_k": 50,
-            "top_p": 0.95
-          },
-          "thinking": "medium"
-        }
-      ],
-      "replaced": "2026-10-19T14:19:17"
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "route": "qwen36-reap48",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": {
+       "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/dflash-qwen36-35b-a3b-Q6_K.gguf",
+       "kind": "DFlash",
+       "quant": "Q6_K",
+       "size_gib": 0.31
+      },
+      "experts": 133,
+      "experts_active": 8,
+      "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/Qwen3.6-35B-A3B-REAP-48-v2.gguf",
+      "name": "Qwen3.6-35B-A3B REAP-48 v2",
+      "params": "35B-A3B",
+      "quant": "Q4_K_M",
+      "serve": {
+       "batch": "1024/1024",
+       "cache_k": "bf16",
+       "cache_v": "bf16",
+       "n_cpu_moe": 8,
+       "spec": "draft-dflash, n-max 3, draft on GPU"
+      },
+      "size_gib": 8.78,
+      "source": "REAP-48 prune of Qwen3.6-35B-A3B (256 experts -> 133); the pruner's repo is not recorded",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.6-35B-A3B-REAP-48-v2"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "route": "qwen36-ud-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/qwen36-UD-Q4_K_M/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "name": "Qwen3.6-35B-A3B",
+      "params": "35B-A3B",
+      "quant": "UD-Q4_K_M",
+      "serve": {},
+      "size_gib": 20.61,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "route": "ornith-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 41,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+      "name": "Ornith-1.5-35B",
+      "params": "35B",
+      "quant": "Q4_K_M",
+      "serve": {},
+      "size_gib": 20.22,
+      "source": "not recorded; gguf license MIT",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "route": "mellum-2.1-12b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "mellum",
+      "blocks": 28,
+      "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 8,
+      "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+      "name": "Mellum2.1-12B-A2.5B-Thinking",
+      "params": "12B-A2.5B",
+      "quant": "Q6_K",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1"
+      },
+      "size_gib": 10.13,
+      "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+      "stack": "llama.cpp router",
+      "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "route": "lfm2.5-q6",
+     "sampling": {
+      "repeat_penalty": 1.05,
+      "temperature": 0.1,
+      "top_k": 50,
+      "top_p": 1.0
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "lfm2moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 4,
+      "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+      "name": "LFM2.5-24B-A2B",
+      "params": "24B-A2B",
+      "quant": "Q6_K",
+      "serve": {},
+      "size_gib": 18.34,
+      "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
     }
-  ],
-  "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
-  "run": "baseline",
-  "runner_sha256": "f442df79be711f9266994daba51c26280b0cc663bc2ab9a570cac19106ff5e37",
-  "started": "2026-10-18T19:01:47",
-  "updated": "2026-10-20T10:18:47"
+   ],
+   "replaced": "2026-10-19T08:30:49"
+  },
+  {
+   "entries": [
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+     "model_pattern": "llama-local/kvstream-fork",
+     "pi_model": "llama-local/kvstream-fork",
+     "route": "qwen38-fork",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head (blk.64.nextn in the target file)",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+      "name": "Qwen3.8-27B (ASCII-Condensed)",
+      "params": "27B",
+      "quant": "UD-IQ4_XS",
+      "serve": {
+       "batch": "1024/256",
+       "cache_k": "q8_0",
+       "cache_v": "q4_0",
+       "draft_cache": "q8_0/q4_0",
+       "kv_resident": "192 MiB prefill / 384 MiB decode",
+       "spec": "draft-mtp, probabilistic"
+      },
+      "size_gib": 12.63,
+      "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+      "stack": "kv-stream fork",
+      "stack_id": "kvstream-fork"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+     "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "route": "coder-iq1m",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen4exp",
+      "blocks": 48,
+      "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+      "ctx": 98304,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 10,
+      "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+      "params": null,
+      "quant": "IQ1_M",
+      "serve": {
+       "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+      },
+      "size_gib": 54.4,
+      "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)",
+     "model_pattern": "llama-local/Qwen3.8-27B",
+     "pi_model": "llama-local/Qwen3.8-27B",
+     "route": "qwen38-27b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 65536,
+      "drafter": {
+       "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+       "kind": "MTP",
+       "quant": "Q4_K_S",
+       "size_gib": 1.28
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+      "name": "Qwen3.8-27B",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+      },
+      "size_gib": 10.18,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx)",
+     "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "route": "swift-1.5",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "caveat": "the gguf's general.file_type says MOSTLY_BF16, contradicting its IQ3_XXS name - do not quote file_type for this file",
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Swift-1.5-Qwen3.8-27B/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf",
+      "name": "Swift-1.5-Qwen3.8-27B GSQ-RCO",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3"
+      },
+      "size_gib": 9.73,
+      "source": "not recorded; gguf general.name 'Swift15-GSQfix-V1MIX-ISTAalloc-IQ3_XXS MTP', license 'other'",
+      "stack": "llama.cpp router",
+      "stack_id": "Swift-1.5-Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "route": "qwen36-reap48",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": {
+       "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/dflash-qwen36-35b-a3b-Q6_K.gguf",
+       "kind": "DFlash",
+       "quant": "Q6_K",
+       "size_gib": 0.31
+      },
+      "experts": 133,
+      "experts_active": 8,
+      "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/Qwen3.6-35B-A3B-REAP-48-v2.gguf",
+      "name": "Qwen3.6-35B-A3B REAP-48 v2",
+      "params": "35B-A3B",
+      "quant": "Q4_K_M",
+      "serve": {
+       "batch": "1024/1024",
+       "cache_k": "bf16",
+       "cache_v": "bf16",
+       "n_cpu_moe": 8,
+       "spec": "draft-dflash, n-max 3, draft on GPU"
+      },
+      "size_gib": 8.78,
+      "source": "REAP-48 prune of Qwen3.6-35B-A3B (256 experts -> 133); the pruner's repo is not recorded",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.6-35B-A3B-REAP-48-v2"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "route": "qwen36-ud-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/qwen36-UD-Q4_K_M/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "name": "Qwen3.6-35B-A3B",
+      "params": "35B-A3B",
+      "quant": "UD-Q4_K_M",
+      "serve": {},
+      "size_gib": 20.61,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "route": "ornith-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 41,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+      "name": "Ornith-1.5-35B",
+      "params": "35B",
+      "quant": "Q4_K_M",
+      "serve": {},
+      "size_gib": 20.22,
+      "source": "not recorded; gguf license MIT",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "route": "mellum-2.1-12b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "mellum",
+      "blocks": 28,
+      "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 8,
+      "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+      "name": "Mellum2.1-12B-A2.5B-Thinking",
+      "params": "12B-A2.5B",
+      "quant": "Q6_K",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1"
+      },
+      "size_gib": 10.13,
+      "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+      "stack": "llama.cpp router",
+      "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "route": "lfm2.5-q6",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.05,
+      "temperature": 0.1,
+      "top_k": 50,
+      "top_p": 1.0
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "lfm2moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 4,
+      "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+      "name": "LFM2.5-24B-A2B",
+      "params": "24B-A2B",
+      "quant": "Q6_K",
+      "serve": {},
+      "size_gib": 18.34,
+      "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    }
+   ],
+   "replaced": "2026-10-19T09:28:15"
+  },
+  {
+   "entries": [
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+     "model_pattern": "llama-local/kvstream-fork",
+     "pi_model": "llama-local/kvstream-fork",
+     "route": "qwen38-fork",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head (blk.64.nextn in the target file)",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+      "name": "Qwen3.8-27B (ASCII-Condensed)",
+      "params": "27B",
+      "quant": "UD-IQ4_XS",
+      "serve": {
+       "batch": "1024/256",
+       "cache_k": "q8_0",
+       "cache_v": "q4_0",
+       "draft_cache": "q8_0/q4_0",
+       "kv_resident": "192 MiB prefill / 384 MiB decode",
+       "spec": "draft-mtp, probabilistic"
+      },
+      "size_gib": 12.63,
+      "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+      "stack": "kv-stream fork",
+      "stack_id": "kvstream-fork"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+     "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "route": "coder-iq1m",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen4exp",
+      "blocks": 48,
+      "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+      "ctx": 98304,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 10,
+      "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+      "params": null,
+      "quant": "IQ1_M",
+      "serve": {
+       "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+      },
+      "size_gib": 54.4,
+      "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)",
+     "model_pattern": "llama-local/Qwen3.8-27B",
+     "pi_model": "llama-local/Qwen3.8-27B",
+     "route": "qwen38-27b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 65536,
+      "drafter": {
+       "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+       "kind": "MTP",
+       "quant": "Q4_K_S",
+       "size_gib": 1.28
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+      "name": "Qwen3.8-27B",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+      },
+      "size_gib": 10.18,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx)",
+     "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "route": "swift-1.5",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "caveat": "the gguf's general.file_type says MOSTLY_BF16, contradicting its IQ3_XXS name - do not quote file_type for this file",
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Swift-1.5-Qwen3.8-27B/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf",
+      "name": "Swift-1.5-Qwen3.8-27B GSQ-RCO",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3"
+      },
+      "size_gib": 9.73,
+      "source": "not recorded; gguf general.name 'Swift15-GSQfix-V1MIX-ISTAalloc-IQ3_XXS MTP', license 'other'",
+      "stack": "llama.cpp router",
+      "stack_id": "Swift-1.5-Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "route": "qwen36-reap48",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": {
+       "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/dflash-qwen36-35b-a3b-Q6_K.gguf",
+       "kind": "DFlash",
+       "quant": "Q6_K",
+       "size_gib": 0.31
+      },
+      "experts": 133,
+      "experts_active": 8,
+      "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/Qwen3.6-35B-A3B-REAP-48-v2.gguf",
+      "name": "Qwen3.6-35B-A3B REAP-48 v2",
+      "params": "35B-A3B",
+      "quant": "Q4_K_M",
+      "serve": {
+       "batch": "1024/1024",
+       "cache_k": "bf16",
+       "cache_v": "bf16",
+       "n_cpu_moe": 8,
+       "spec": "draft-dflash, n-max 3, draft on GPU"
+      },
+      "size_gib": 8.78,
+      "source": "REAP-48 prune of Qwen3.6-35B-A3B (256 experts -> 133); the pruner's repo is not recorded",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.6-35B-A3B-REAP-48-v2"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "route": "qwen36-ud-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/qwen36-UD-Q4_K_M/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "name": "Qwen3.6-35B-A3B",
+      "params": "35B-A3B",
+      "quant": "UD-Q4_K_M",
+      "serve": {},
+      "size_gib": 20.61,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "route": "ornith-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 41,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+      "name": "Ornith-1.5-35B",
+      "params": "35B",
+      "quant": "Q4_K_M",
+      "serve": {},
+      "size_gib": 20.22,
+      "source": "not recorded; gguf license MIT",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "route": "mellum-2.1-12b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "mellum",
+      "blocks": 28,
+      "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 8,
+      "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+      "name": "Mellum2.1-12B-A2.5B-Thinking",
+      "params": "12B-A2.5B",
+      "quant": "Q6_K",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1"
+      },
+      "size_gib": 10.13,
+      "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+      "stack": "llama.cpp router",
+      "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "route": "lfm2.5-q6",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.05,
+      "temperature": 0.6,
+      "top_k": 50,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "lfm2moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 4,
+      "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+      "name": "LFM2.5-24B-A2B",
+      "params": "24B-A2B",
+      "quant": "Q6_K",
+      "serve": {},
+      "size_gib": 18.34,
+      "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    }
+   ],
+   "replaced": "2026-10-19T09:47:03"
+  },
+  {
+   "entries": [
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+     "model_pattern": "llama-local/kvstream-fork",
+     "pi_model": "llama-local/kvstream-fork",
+     "route": "qwen38-fork",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head (blk.64.nextn in the target file)",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+      "name": "Qwen3.8-27B (ASCII-Condensed)",
+      "params": "27B",
+      "quant": "UD-IQ4_XS",
+      "serve": {
+       "batch": "1024/256",
+       "cache_k": "q8_0",
+       "cache_v": "q4_0",
+       "draft_cache": "q8_0/q4_0",
+       "kv_resident": "192 MiB prefill / 384 MiB decode",
+       "spec": "draft-mtp, probabilistic"
+      },
+      "size_gib": 12.63,
+      "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+      "stack": "kv-stream fork",
+      "stack_id": "kvstream-fork"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+     "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+     "route": "coder-iq1m",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen4exp",
+      "blocks": 48,
+      "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+      "ctx": 98304,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 10,
+      "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+      "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+      "params": null,
+      "quant": "IQ1_M",
+      "serve": {
+       "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+      },
+      "size_gib": 54.4,
+      "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)",
+     "model_pattern": "llama-local/Qwen3.8-27B",
+     "pi_model": "llama-local/Qwen3.8-27B",
+     "route": "qwen38-27b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "ctx": 65536,
+      "drafter": {
+       "file": "models/Qwen3.8-27B/mtp-Qwen3.8-27B-Q4_0.gguf",
+       "kind": "MTP",
+       "quant": "Q4_K_S",
+       "size_gib": 1.28
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Qwen3.8-27B/Qwen3.8-27B-UD-IQ3_XXS.gguf",
+      "name": "Qwen3.8-27B",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3 (router auto-wires the mtp-*.gguf)"
+      },
+      "size_gib": 10.18,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx)",
+     "model_pattern": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "pi_model": "llama-local/Swift-1.5-Qwen3.8-27B",
+     "route": "swift-1.5",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "xhigh",
+     "weights": {
+      "arch": "qwen35",
+      "blocks": 65,
+      "caveat": "the gguf's general.file_type says MOSTLY_BF16, contradicting its IQ3_XXS name - do not quote file_type for this file",
+      "ctx": 98304,
+      "drafter": {
+       "file": null,
+       "kind": "MTP",
+       "quant": "inline head",
+       "size_gib": null
+      },
+      "experts": null,
+      "experts_active": null,
+      "file": "models/Swift-1.5-Qwen3.8-27B/Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_XXS-mtp.gguf",
+      "name": "Swift-1.5-Qwen3.8-27B GSQ-RCO",
+      "params": "27B",
+      "quant": "IQ3_XXS",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1",
+       "spec": "draft-mtp, n-max 3"
+      },
+      "size_gib": 9.73,
+      "source": "not recorded; gguf general.name 'Swift15-GSQfix-V1MIX-ISTAalloc-IQ3_XXS MTP', license 'other'",
+      "stack": "llama.cpp router",
+      "stack_id": "Swift-1.5-Qwen3.8-27B"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "pi_model": "llama-local/Qwen3.6-35B-A3B-REAP-48-v2",
+     "route": "qwen36-reap48",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": {
+       "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/dflash-qwen36-35b-a3b-Q6_K.gguf",
+       "kind": "DFlash",
+       "quant": "Q6_K",
+       "size_gib": 0.31
+      },
+      "experts": 133,
+      "experts_active": 8,
+      "file": "models/Qwen3.6-35B-A3B-REAP-48-v2/Qwen3.6-35B-A3B-REAP-48-v2.gguf",
+      "name": "Qwen3.6-35B-A3B REAP-48 v2",
+      "params": "35B-A3B",
+      "quant": "Q4_K_M",
+      "serve": {
+       "batch": "1024/1024",
+       "cache_k": "bf16",
+       "cache_v": "bf16",
+       "n_cpu_moe": 8,
+       "spec": "draft-dflash, n-max 3, draft on GPU"
+      },
+      "size_gib": 8.78,
+      "source": "REAP-48 prune of Qwen3.6-35B-A3B (256 experts -> 133); the pruner's repo is not recorded",
+      "stack": "llama.cpp router",
+      "stack_id": "Qwen3.6-35B-A3B-REAP-48-v2"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "pi_model": "polystrata-qwen36/qwen3.6-35b-a3b-ud-q4_k_m",
+     "route": "qwen36-ud-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/qwen36-UD-Q4_K_M/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf",
+      "name": "Qwen3.6-35B-A3B",
+      "params": "35B-A3B",
+      "quant": "UD-Q4_K_M",
+      "serve": {},
+      "size_gib": 20.61,
+      "source": "Unsloth, hf.co/unsloth",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+     "route": "ornith-q4km",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "qwen35moe",
+      "blocks": 41,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 256,
+      "experts_active": 8,
+      "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+      "name": "Ornith-1.5-35B",
+      "params": "35B",
+      "quant": "Q4_K_M",
+      "serve": {},
+      "size_gib": 20.22,
+      "source": "not recorded; gguf license MIT",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)",
+     "model_pattern": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "pi_model": "llama-local/Mellum2.1-12B-A2.5B-Thinking",
+     "route": "mellum-2.1-12b",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "mellum",
+      "blocks": 28,
+      "caveat": "the pi models.json display name says 'bf16 KV', but models.ini's preset - what the router loads - is q5_0/q4_1",
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 8,
+      "file": "models/Mellum2.1-12B-A2.5B-Thinking/Mellum2.1-12B-A2.5B-Thinking-Q6_K.gguf",
+      "name": "Mellum2.1-12B-A2.5B-Thinking",
+      "params": "12B-A2.5B",
+      "quant": "Q6_K",
+      "serve": {
+       "batch": "512/512",
+       "cache_k": "q5_0",
+       "cache_v": "q4_1"
+      },
+      "size_gib": 10.13,
+      "source": "JetBrains, hf.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (the local file's sha256 equals that repo's x-linked-etag)",
+      "stack": "llama.cpp router",
+      "stack_id": "Mellum2.1-12B-A2.5B-Thinking"
+     }
+    },
+    {
+     "base_url": "http://127.0.0.1:8001/v1",
+     "cap_seconds": 1800,
+     "label": "LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)",
+     "model_pattern": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "pi_model": "polystrata-q6/lfm2.5-24b-a2b-q6_k",
+     "route": "lfm2.5-q6",
+     "sampling": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.05,
+      "temperature": 0.6,
+      "top_k": 50,
+      "top_p": 0.95
+     },
+     "thinking": "medium",
+     "weights": {
+      "arch": "lfm2moe",
+      "blocks": 40,
+      "ctx": 131072,
+      "drafter": null,
+      "experts": 64,
+      "experts_active": 4,
+      "file": "/home/tako/dev/PolyStrata-data/models/lfm2-q6_k/LFM2.5-24B-A2B-Q6_K.gguf",
+      "name": "LFM2.5-24B-A2B",
+      "params": "24B-A2B",
+      "quant": "Q6_K",
+      "serve": {},
+      "size_gib": 18.34,
+      "source": "not recorded (Liquid AI LFM2.5-24B-A2B); the GGUF producer is not recorded",
+      "stack": "PolyStrata",
+      "stack_id": "strata-poly"
+     }
+    }
+   ],
+   "replaced": "2026-10-19T14:19:17"
+  }
+ ],
+ "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+ "run": "baseline",
+ "runner_sha256": "f442df79be711f9266994daba51c26280b0cc663bc2ab9a570cac19106ff5e37",
+ "started": "2026-10-18T19:01:47",
+ "updated": "2026-10-20T10:18:47"
 }
