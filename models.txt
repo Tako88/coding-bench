@@ -3,16 +3,7 @@
 
 # llama.cpp router / fork
 qwen38-fork
-coder-iq1m
-qwen38-27b
-swift-1.5
-qwen36-reap48
 
 # PolyStrata engine
-qwen36-ud-q4km
+coder-iq1m
 ornith-q4km
-
-# long-running ones last
-mellum-2.1-12b
-lfm2.5-q6
-nemotron-iq2_xxs

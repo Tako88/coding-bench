@@ -17,9 +17,18 @@
 
 ### samplers
 
-| model                                                      | sampling from | temperature | top_p | top_k | min_p | presence | repeat | thinking | cap   |
-|------------------------------------------------------------|---------------|-------------|-------|-------|-------|----------|--------|----------|-------|
-| Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx) | request       | 1.0         | 0.95  | -     | 0.0   | 0.0      | 1.0    | medium   | 1800s |
+| model                                                                     | sampling from | temperature | top_p | top_k | min_p | presence | repeat | thinking | cap   |
+|---------------------------------------------------------------------------|---------------|-------------|-------|-------|-------|----------|--------|----------|-------|
+| Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx) | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
+| Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)            | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
+| Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)                   | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
+| Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx) | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
+| Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx) | request       | 0.6         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | medium   | 1800s |
+| Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)                        | request       | 0.6         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | medium   | 1800s |
+| Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)                            | request       | 0.6         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | medium   | 1800s |
+| Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)          | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | medium   | 1800s |
+| LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)                              | request       | 0.6         | 0.95  | 50    | 0.0   | 0.0      | 1.05   | medium   | 1800s |
+| Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)                | request       | 1.0         | 0.95  | -     | 0.0   | 0.0      | 1.0    | medium   | 1800s |
 
 ### models
 
