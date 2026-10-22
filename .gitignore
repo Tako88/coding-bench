@@ -25,3 +25,5 @@ runner*.log
 # Local mechanism checks (cap/OOM probes), not results. A leading underscore marks
 # a run that is scratch; real runs get real names.
 A/runs/_*/
+
+.plan

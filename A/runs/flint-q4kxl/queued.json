@@ -1,0 +1,169 @@
+{
+  "bench": "A",
+  "entries": [
+    {
+      "base_url": "http://127.0.0.1:8001/v1",
+      "cap_seconds": 1800,
+      "label": "Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx)",
+      "model_pattern": "llama-local/kvstream-fork",
+      "pi_model": "llama-local/kvstream-fork",
+      "route": "qwen38-fork",
+      "sampling": {
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95
+      },
+      "thinking": "xhigh",
+      "weights": {
+        "arch": "qwen35",
+        "blocks": 65,
+        "ctx": 98304,
+        "drafter": {
+          "file": null,
+          "kind": "MTP",
+          "quant": "inline head (blk.64.nextn in the target file)",
+          "size_gib": null
+        },
+        "experts": null,
+        "experts_active": null,
+        "file": "models/Qwen3.8-27B-ASCII-Condensed/Qwen3.8-27B-ASCII-Condensed-UD-IQ4_XS.gguf",
+        "name": "Qwen3.8-27B (ASCII-Condensed)",
+        "params": "27B",
+        "quant": "UD-IQ4_XS",
+        "serve": {
+          "batch": "1024/256",
+          "cache_k": "q8_0",
+          "cache_v": "q4_0",
+          "draft_cache": "q8_0/q4_0",
+          "kv_resident": "192 MiB prefill / 384 MiB decode",
+          "spec": "draft-mtp, probabilistic"
+        },
+        "size_gib": 12.63,
+        "source": "Unsloth, hf.co/unsloth (GGUF); the ASCII-Condensed remap is documented nowhere on this box",
+        "stack": "kv-stream fork",
+        "stack_id": "kvstream-fork"
+      }
+    },
+    {
+      "base_url": "http://127.0.0.1:8001/v1",
+      "cap_seconds": 1800,
+      "label": "Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)",
+      "model_pattern": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+      "pi_model": "polystrata-coder/qwen3.8-flash-next-coder-iq1_m",
+      "route": "coder-iq1m",
+      "sampling": {
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95
+      },
+      "thinking": "xhigh",
+      "weights": {
+        "arch": "qwen4exp",
+        "blocks": 48,
+        "caveat": "the gguf declares no parameter count; its general.size_label is the string '512x56B', which is not one",
+        "ctx": 98304,
+        "drafter": null,
+        "experts": 256,
+        "experts_active": 10,
+        "file": "/home/tako/dev/PolyStrata-data/models/coder-/Qwen3.8-Flash-Next-GSQ-RCO-IQ1_M-00001-of-00002.gguf",
+        "name": "Qwen3.8-Flash-Next GSQ-RCO Coder",
+        "params": null,
+        "quant": "IQ1_M",
+        "serve": {
+          "note": "two-shard gguf (\u2026-00001-of-00002 + \u2026-00002-of-00002); the gguf's own size_label is the string 512x56B"
+        },
+        "size_gib": 54.4,
+        "source": "ISTA DASLab, hf.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-Coder-GGUF",
+        "stack": "PolyStrata",
+        "stack_id": "strata-poly"
+      }
+    },
+    {
+      "base_url": "http://127.0.0.1:8001/v1",
+      "cap_seconds": 1800,
+      "label": "Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)",
+      "model_pattern": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+      "pi_model": "polystrata-ornith/ornith-1.5-35b-a3b-q4_k_m",
+      "route": "ornith-q4km",
+      "sampling": {
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 0.6,
+        "top_k": 20,
+        "top_p": 0.95
+      },
+      "thinking": "medium",
+      "weights": {
+        "arch": "qwen35moe",
+        "blocks": 41,
+        "ctx": 131072,
+        "drafter": null,
+        "experts": 256,
+        "experts_active": 8,
+        "file": "/home/tako/dev/PolyStrata-data/models/ornith-1.5-35b-a3b-Q4_K_M/Ornith-1.5-35B-Q4_K_M.gguf",
+        "name": "Ornith-1.5-35B",
+        "params": "35B",
+        "quant": "Q4_K_M",
+        "serve": {},
+        "size_gib": 20.22,
+        "source": "not recorded; gguf license MIT",
+        "stack": "PolyStrata",
+        "stack_id": "strata-poly"
+      }
+    },
+    {
+      "base_url": "http://127.0.0.1:8001/v1",
+      "cap_seconds": 1800,
+      "label": "Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)",
+      "model_pattern": "polystrata-flint/flint-preview-ud-q4_k_xl",
+      "pi_model": "polystrata-flint/flint-preview-ud-q4_k_xl",
+      "route": "flint-q4kxl",
+      "sampling": {
+        "min_p": 0.0,
+        "presence_penalty": 0.0,
+        "repeat_penalty": 1.0,
+        "temperature": 1.0,
+        "top_k": 20,
+        "top_p": 0.95
+      },
+      "thinking": "xhigh",
+      "weights": {
+        "arch": "flint",
+        "blocks": 49,
+        "caveat": "the gguf declares no parameter count; its general.size_label is the string '256x2.1B', which is not one. Its metadata also says 262144 ctx natively, but the engine is launched with --max-context 131072.",
+        "ctx": 131072,
+        "drafter": null,
+        "experts": 256,
+        "experts_active": 6,
+        "file": "/home/tako/dev/PolyStrata-data/models/flint-ud-q4_k_xl/flint-preview-UD-Q4_K_XL.gguf",
+        "name": "Flint Preview",
+        "params": null,
+        "quant": "UD-Q4_K_XL",
+        "serve": {
+          "cache_k": "q8_0",
+          "cache_v": "q8_0",
+          "expert_profile": "PolyStrata-data/packs/flint-q4_k_xl/expert-profile.txt",
+          "fit_max_tokens": true,
+          "lookup": 0,
+          "vram_reserve_mib": 2048
+        },
+        "size_gib": 23.33,
+        "source": "not recorded; the gguf's license is 'flint-preview' and it is tagged unsloth",
+        "stack": "PolyStrata",
+        "stack_id": "strata-poly"
+      }
+    }
+  ],
+  "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "run": "flint-q4kxl",
+  "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
+  "started": "2026-10-22T18:04:57",
+  "updated": "2026-10-22T18:04:57"
+}

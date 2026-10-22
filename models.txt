@@ -7,3 +7,4 @@ qwen38-fork
 # PolyStrata engine
 coder-iq1m
 ornith-q4km
+flint-q4kxl

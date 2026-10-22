@@ -1,0 +1,30 @@
+{
+  "notes": "PolyStrata's new flint backend through llama-swap (id flint-preview-ud-q4_k_xl). Served at 131072 ctx although the gguf declares 262144; --fit-max-tokens is on, Q8_0 KV, 2048 MiB VRAM reserve, expert profile from PolyStrata-data/packs/flint-q4_k_xl. Cold start ~80-105s like every PolyStrata entry, and the swap frees the card after 5 minutes idle. Sampling is the model card's own (temperature 1.0, top_p 0.95, top_k 20) and is what models.json sends, so the table should read 'request', not 'engine default'.",
+  "pi_model": "polystrata-flint/flint-preview-ud-q4_k_xl",
+  "thinking": "xhigh",
+  "weights": {
+    "arch": "flint",
+    "blocks": 49,
+    "caveat": "the gguf declares no parameter count; its general.size_label is the string '256x2.1B', which is not one. Its metadata also says 262144 ctx natively, but the engine is launched with --max-context 131072.",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 256,
+    "experts_active": 6,
+    "file": "/home/tako/dev/PolyStrata-data/models/flint-ud-q4_k_xl/flint-preview-UD-Q4_K_XL.gguf",
+    "name": "Flint Preview",
+    "params": null,
+    "quant": "UD-Q4_K_XL",
+    "serve": {
+      "cache_k": "q8_0",
+      "cache_v": "q8_0",
+      "expert_profile": "PolyStrata-data/packs/flint-q4_k_xl/expert-profile.txt",
+      "fit_max_tokens": true,
+      "lookup": 0,
+      "vram_reserve_mib": 2048
+    },
+    "size_gib": 23.33,
+    "source": "not recorded; the gguf's license is 'flint-preview' and it is tagged unsloth",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  }
+}
