@@ -1,0 +1,30 @@
+{
+  "notes": "Ling-3.0-tiny Q8_0 through llama-swap (id ling-3.0-tiny-q8_0): stock llama.cpp, 131072 ctx, -ngl 99, -fa on, -b 1024 -ub 512, KV f16 (not q8_0 -- MLA needs matching K/V types and this build's flash-attn kernels for the 576-wide MLA head are f16-only; ~1.6 GiB of KV at full ctx). Normal ~15s load, not a PolyStrata cold start. Sampling is the model card's own (temperature 1.0, top_p 0.95, top_k 20, min_p 0) and is what models.json sends, so the table reads 'request'. Thinking level is 'high', not 'xhigh': the model entry carries no thinkingLevelMap, so xhigh/max are unsupported and would just clamp to high.",
+  "pi_model": "llama-local/ling-3.0-tiny-q8_0",
+  "thinking": "high",
+  "weights": {
+    "arch": "bailingmoe3",
+    "blocks": 24,
+    "caveat": "the gguf declares no parameter count; its general.size_label is the string '128x1.0B', which is an expert layout, not a count. Architecture is 18 KDA linear-attention + 6 MLA blocks.",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 128,
+    "experts_active": 8,
+    "file": "/home/tako/dev/llama.cpp/models/Ling-3.0-tiny/Ling-3.0-tiny-Q8_0.gguf",
+    "name": "Ling-3.0-tiny",
+    "params": null,
+    "quant": "Q8_0",
+    "serve": {
+      "batch": "1024/512",
+      "cache_k": "f16",
+      "cache_v": "f16",
+      "flash_attn": true,
+      "gpu_layers": 99,
+      "min_p": 0
+    },
+    "size_gib": 7.83,
+    "source": "inclusionAI; gguf license MIT, source repo not recorded",
+    "stack": "llama.cpp",
+    "stack_id": "llama-cpp"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "no solution.py produced",
+    "ok": false
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)",
+  "model_pattern": "llama-local/ling-3.0-tiny-q8_0",
+  "pi_model": "llama-local/ling-3.0-tiny-q8_0",
+  "pi_version": "1.4.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "ling-q8",
+  "route_file": "ling-q8.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 32768,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 1.0,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
+  "sampling": null,
+  "solution_sha256": null,
+  "stats": {
+    "calls": {
+      "read": 1
+    },
+    "comp": 0,
+    "duration_ms": 413833,
+    "last": "Let me understand the task:\n\n1. Implement `shortest_prefix_match(pattern, text)` that finds the smallest L (0 <= L <= len(text)) such that the pattern matches t",
+    "out": 32799,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 1,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 2
+  },
+  "task": "c5_shortest_match",
+  "thinking": "high",
+  "transcript": "2026-10-24T05-50-01-762Z_01a16c75-7e22-71d4-84a6-46cb61d9958f.jsonl",
+  "wall_seconds": 414,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.2
+  },
+  "weights": {
+    "arch": "bailingmoe3",
+    "blocks": 24,
+    "caveat": "the gguf declares no parameter count; its general.size_label is the string '128x1.0B', which is an expert layout, not a count. Architecture is 18 KDA linear-attention + 6 MLA blocks.",
+    "ctx": 131072,
+    "drafter": null,
+    "experts": 128,
+    "experts_active": 8,
+    "file": "/home/tako/dev/llama.cpp/models/Ling-3.0-tiny/Ling-3.0-tiny-Q8_0.gguf",
+    "name": "Ling-3.0-tiny",
+    "params": null,
+    "quant": "Q8_0",
+    "serve": {
+      "batch": "1024/512",
+      "cache_k": "f16",
+      "cache_v": "f16",
+      "flash_attn": true,
+      "gpu_layers": 99,
+      "min_p": 0
+    },
+    "size_gib": 7.83,
+    "source": "inclusionAI; gguf license MIT, source repo not recorded",
+    "stack": "llama.cpp",
+    "stack_id": "llama-cpp"
+  },
+  "when": "2026-10-24T08:56:56"
+}

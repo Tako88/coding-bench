@@ -4,6 +4,9 @@
 # llama.cpp router / fork
 qwen38-fork
 
+# stock llama.cpp, through llama-swap
+ling-q8
+
 # PolyStrata engine
 coder-iq1m
 ornith-q4km

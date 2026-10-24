@@ -4,10 +4,10 @@
     {
       "base_url": "http://127.0.0.1:8001/v1",
       "cap_seconds": 1800,
-      "label": "Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)",
-      "model_pattern": "polystrata-flint/flint-preview-ud-q4_k_xl",
-      "pi_model": "polystrata-flint/flint-preview-ud-q4_k_xl",
-      "route": "flint-q4kxl",
+      "label": "Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)",
+      "model_pattern": "llama-local/ling-3.0-tiny-q8_0",
+      "pi_model": "llama-local/ling-3.0-tiny-q8_0",
+      "route": "ling-q8",
       "sampling": {
         "min_p": 0.0,
         "presence_penalty": 0.0,
@@ -16,31 +16,31 @@
         "top_k": 20,
         "top_p": 0.95
       },
-      "thinking": "xhigh",
+      "thinking": "high",
       "weights": {
-        "arch": "flint",
-        "blocks": 49,
-        "caveat": "the gguf declares no parameter count; its general.size_label is the string '256x2.1B', which is not one. Its metadata also says 262144 ctx natively, but the engine is launched with --max-context 131072.",
+        "arch": "bailingmoe3",
+        "blocks": 24,
+        "caveat": "the gguf declares no parameter count; its general.size_label is the string '128x1.0B', which is an expert layout, not a count. Architecture is 18 KDA linear-attention + 6 MLA blocks.",
         "ctx": 131072,
         "drafter": null,
-        "experts": 256,
-        "experts_active": 6,
-        "file": "/home/tako/dev/PolyStrata-data/models/flint-ud-q4_k_xl/flint-preview-UD-Q4_K_XL.gguf",
-        "name": "Flint Preview",
+        "experts": 128,
+        "experts_active": 8,
+        "file": "/home/tako/dev/llama.cpp/models/Ling-3.0-tiny/Ling-3.0-tiny-Q8_0.gguf",
+        "name": "Ling-3.0-tiny",
         "params": null,
-        "quant": "UD-Q4_K_XL",
+        "quant": "Q8_0",
         "serve": {
-          "cache_k": "q8_0",
-          "cache_v": "q8_0",
-          "expert_profile": "PolyStrata-data/packs/flint-q4_k_xl/expert-profile.txt",
-          "fit_max_tokens": true,
-          "lookup": 0,
-          "vram_reserve_mib": 2048
+          "batch": "1024/512",
+          "cache_k": "f16",
+          "cache_v": "f16",
+          "flash_attn": true,
+          "gpu_layers": 99,
+          "min_p": 0
         },
-        "size_gib": 23.33,
-        "source": "not recorded; the gguf's license is 'flint-preview' and it is tagged unsloth",
-        "stack": "PolyStrata",
-        "stack_id": "strata-poly"
+        "size_gib": 7.83,
+        "source": "inclusionAI; gguf license MIT, source repo not recorded",
+        "stack": "llama.cpp",
+        "stack_id": "llama-cpp"
       }
     }
   ],
@@ -1887,11 +1887,58 @@
         }
       ],
       "replaced": "2026-10-20T10:18:47"
+    },
+    {
+      "entries": [
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)",
+          "model_pattern": "polystrata-flint/flint-preview-ud-q4_k_xl",
+          "pi_model": "polystrata-flint/flint-preview-ud-q4_k_xl",
+          "route": "flint-q4kxl",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "xhigh",
+          "weights": {
+            "arch": "flint",
+            "blocks": 49,
+            "caveat": "the gguf declares no parameter count; its general.size_label is the string '256x2.1B', which is not one. Its metadata also says 262144 ctx natively, but the engine is launched with --max-context 131072.",
+            "ctx": 131072,
+            "drafter": null,
+            "experts": 256,
+            "experts_active": 6,
+            "file": "/home/tako/dev/PolyStrata-data/models/flint-ud-q4_k_xl/flint-preview-UD-Q4_K_XL.gguf",
+            "name": "Flint Preview",
+            "params": null,
+            "quant": "UD-Q4_K_XL",
+            "serve": {
+              "cache_k": "q8_0",
+              "cache_v": "q8_0",
+              "expert_profile": "PolyStrata-data/packs/flint-q4_k_xl/expert-profile.txt",
+              "fit_max_tokens": true,
+              "lookup": 0,
+              "vram_reserve_mib": 2048
+            },
+            "size_gib": 23.33,
+            "source": "not recorded; the gguf's license is 'flint-preview' and it is tagged unsloth",
+            "stack": "PolyStrata",
+            "stack_id": "strata-poly"
+          }
+        }
+      ],
+      "replaced": "2026-10-22T18:06:33"
     }
   ],
   "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
   "run": "baseline",
   "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
   "started": "2026-10-18T19:01:47",
-  "updated": "2026-10-22T18:06:33"
+  "updated": "2026-10-24T08:21:02"
 }
