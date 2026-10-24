@@ -58,3 +58,8 @@ c2_eval_expr         466s unfinished  FAIL out=33137 reasoning=0 turns=4 calls={
 c3_tokenize          411s unfinished  FAIL out=32822 reasoning=0 turns=2 calls={"read":1} comp=0 rep_turns=1  {"ok": false, "detail": "no solution.py produced"}
 c4_schedule          410s unfinished  FAIL out=32821 reasoning=0 turns=2 calls={"read":1} comp=0 rep_turns=1  {"ok": false, "detail": "no solution.py produced"}
 c5_shortest_match    414s unfinished  FAIL out=32799 reasoning=0 turns=2 calls={"read":1} comp=0 rep_turns=1  {"ok": false, "detail": "no solution.py produced"}
+c1_csv_line           49s DONE        PASS out=2267 reasoning=0 turns=5 calls={"bash":2,"read":1,"write":2} comp=0 rep_turns=0  {"ok": true, "detail": "fixed + 400 round trips"}
+c2_eval_expr         307s unfinished  PASS out=14680 reasoning=0 turns=16 calls={"bash":5,"edit":4,"ls":1,"read":3,"write":2} comp=0 rep_turns=1  {"ok": true, "detail": "fixed + 600 random expressions"}
+c3_tokenize          246s DONE        PASS out=8134 reasoning=0 turns=21 calls={"bash":12,"edit":4,"read":2,"write":2} comp=0 rep_turns=0  {"ok": true, "detail": "fixed + 500 generated + 200k in 0.02s (0.81x ref, budget 6.0x = 3.00s)"}
+c4_schedule          321s DONE        PASS out=17639 reasoning=0 turns=10 calls={"bash":4,"edit":1,"ls":1,"read":1,"write":2} comp=0 rep_turns=0  {"ok": true, "detail": "fixed + 120 brute-checked + 200k in 0.37s (0.64x ref, budget 6.0x = 3.45s)"}
+c5_shortest_match    244s DONE        PASS out=13788 reasoning=0 turns=19 calls={"bash":8,"edit":7,"read":1,"write":2} comp=0 rep_turns=0  {"ok": true, "detail": "fixed + 250 brute-checked + 20 stars in 0.01s (0.00x ref, budget 4.5x = 11.54s)"}

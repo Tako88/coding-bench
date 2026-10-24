@@ -1,0 +1,95 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "DONE",
+  "grade": {
+    "detail": "fixed + 400 round trips",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+  "pi_model": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+  "pi_version": "1.4.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "cybertiel-q4km",
+  "route_file": "cybertiel-q4km.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
+  "sampling": null,
+  "solution_sha256": "76ce82518823d2a7ebb2f32195067d1c9bc2621cd62c3e8d672733f2b95d04d0",
+  "stats": {
+    "calls": {
+      "bash": 2,
+      "read": 1,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 48841,
+    "last": "All good. DONE.\n DONE",
+    "out": 2267,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 0,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 5
+  },
+  "task": "c1_csv_line",
+  "thinking": "xhigh",
+  "transcript": "2026-10-24T07-05-18-413Z_01a16cba-694c-709b-93de-619f464c6fa8.jsonl",
+  "wall_seconds": 49,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 10.9
+  },
+  "weights": {
+    "arch": "qwen35moe",
+    "blocks": 40,
+    "caveat": "40 blocks, not 41: this quant carries no blk.40, so the MTP head is a separate gguf passed as --draft-model. Its metadata also declares 262144 ctx natively while the engine is launched with --max-context 131072. The file's own general.name is 'Huihui Ornith 1.5 35B A3B Abliterated': it is an Ornith-1.5 abliterated finetune respun as Cyber-Tiel Coder, MIT, base ornith-ai/Ornith-1.5-35B-A3B.",
+    "ctx": 131072,
+    "drafter": {
+      "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/mtp-Cyber-Tiel-Coder-35B-A3B.gguf",
+      "kind": "MTP",
+      "quant": "Q8_1 dense + Q4_K experts (blk.40)",
+      "size_gib": 1.38
+    },
+    "experts": 256,
+    "experts_active": 8,
+    "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/Cyber-Tiel-Coder-35B-A3B-UD-Q4_K_M.gguf",
+    "name": "Cyber-Tiel Coder 35B-A3B",
+    "params": "35B",
+    "quant": "UD-Q4_K_M",
+    "serve": {
+      "expert_profile": "PolyStrata-data/packs/cyber-tiel/expert-profile.txt",
+      "fit_max_tokens": true,
+      "vram_reserve_mib": 2048
+    },
+    "size_gib": 20.61,
+    "source": "gguf metadata: Huihui Ornith-1.5-35B-A3B abliterated, MIT; base ornith-ai/Ornith-1.5-35B-A3B. No Cyber-Tiel repo is recorded in the file.",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  },
+  "when": "2026-10-24T10:06:07"
+}

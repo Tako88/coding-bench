@@ -14,6 +14,7 @@
 | Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)                | P 1170s 22.4k   | P 837s 13.2k    | P 1474s 21.6k  | F* 1800s 47.1k+ | P 893s 22.1k      | 4/5   | 126.3k |
 | Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)                         | P 274s 11.8k    | P 163s 7.0k     | P 243s 7.6k    | P 589s 24.9k    | F 412s 16.6k      | 4/5   | 67.9k  |
 | Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)                                | F 423s 33.4k    | F 466s 33.1k    | F 411s 32.8k   | F 410s 32.8k    | F 414s 32.8k      | 0/5   | 165.0k |
+| Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)         | P 49s 2.3k      | P 307s 14.7k    | P 246s 8.1k    | P 321s 17.6k    | P 244s 13.8k      | 5/5   | 56.5k  |
 
 `*` = killed at the 1800s cap, file on disk graded afterwards
 
@@ -33,20 +34,22 @@
 | Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)                | request       | 1.0         | 0.95  | -     | 0.0   | 0.0      | 1.0    | medium   | 1800s |
 | Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)                         | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
 | Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)                                | request       | 1.0         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | high     | 1800s |
+| Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)         | request       | 0.6         | 0.95  | 20    | 0.0   | 0.0      | 1.0    | xhigh    | 1800s |
 
 ### models
 
-| model                            | params    | quant      | GiB   | drafter              | arch (blocks / experts)                    | ctx    | served by        |
-|----------------------------------|-----------|------------|-------|----------------------|--------------------------------------------|--------|------------------|
-| Qwen3.8-27B (ASCII-Condensed)    | 27B       | UD-IQ4_XS  | 12.63 | MTP inline           | qwen35 65 blk                              | 98304  | kv-stream fork   |
-| Qwen3.8-Flash-Next GSQ-RCO Coder | -         | IQ1_M      | 54.40 | -                    | qwen4exp 48 blk / 256 exp (10 active)      | 98304  | PolyStrata       |
-| Qwen3.8-27B                      | 27B       | IQ3_XXS    | 10.18 | MTP Q4_K_S 1.28 GiB  | qwen35 65 blk                              | 65536  | llama.cpp router |
-| Swift-1.5-Qwen3.8-27B GSQ-RCO    | 27B       | IQ3_XXS    | 9.73  | MTP inline           | qwen35 65 blk                              | 98304  | llama.cpp router |
-| Qwen3.6-35B-A3B REAP-48 v2       | 35B-A3B   | Q4_K_M     | 8.78  | DFlash Q6_K 0.31 GiB | qwen35moe 40 blk / 133 exp (8 active)      | 131072 | llama.cpp router |
-| Qwen3.6-35B-A3B                  | 35B-A3B   | UD-Q4_K_M  | 20.61 | -                    | qwen35moe 40 blk / 256 exp (8 active)      | 131072 | PolyStrata       |
-| Ornith-1.5-35B                   | 35B       | Q4_K_M     | 20.22 | -                    | qwen35moe 41 blk / 256 exp (8 active)      | 131072 | PolyStrata       |
-| Mellum2.1-12B-A2.5B-Thinking     | 12B-A2.5B | Q6_K       | 10.13 | -                    | mellum 28 blk / 64 exp (8 active)          | 131072 | llama.cpp router |
-| LFM2.5-24B-A2B                   | 24B-A2B   | Q6_K       | 18.34 | -                    | lfm2moe 40 blk / 64 exp (4 active)         | 131072 | PolyStrata       |
-| Nemotron-3.5-Bolt-74B-A9B        | 74B-A9B   | IQ2_XXS    | 20.51 | -                    | nemotron_h_moe 88 blk / 496 exp (9 active) | 131072 | PolyStrata       |
-| Flint Preview                    | -         | UD-Q4_K_XL | 23.33 | -                    | flint 49 blk / 256 exp (6 active)          | 131072 | PolyStrata       |
-| Ling-3.0-tiny                    | -         | Q8_0       | 7.83  | -                    | bailingmoe3 24 blk / 128 exp (8 active)    | 131072 | llama.cpp        |
+| model                            | params    | quant      | GiB   | drafter                                         | arch (blocks / experts)                    | ctx    | served by        |
+|----------------------------------|-----------|------------|-------|-------------------------------------------------|--------------------------------------------|--------|------------------|
+| Qwen3.8-27B (ASCII-Condensed)    | 27B       | UD-IQ4_XS  | 12.63 | MTP inline                                      | qwen35 65 blk                              | 98304  | kv-stream fork   |
+| Qwen3.8-Flash-Next GSQ-RCO Coder | -         | IQ1_M      | 54.40 | -                                               | qwen4exp 48 blk / 256 exp (10 active)      | 98304  | PolyStrata       |
+| Qwen3.8-27B                      | 27B       | IQ3_XXS    | 10.18 | MTP Q4_K_S 1.28 GiB                             | qwen35 65 blk                              | 65536  | llama.cpp router |
+| Swift-1.5-Qwen3.8-27B GSQ-RCO    | 27B       | IQ3_XXS    | 9.73  | MTP inline                                      | qwen35 65 blk                              | 98304  | llama.cpp router |
+| Qwen3.6-35B-A3B REAP-48 v2       | 35B-A3B   | Q4_K_M     | 8.78  | DFlash Q6_K 0.31 GiB                            | qwen35moe 40 blk / 133 exp (8 active)      | 131072 | llama.cpp router |
+| Qwen3.6-35B-A3B                  | 35B-A3B   | UD-Q4_K_M  | 20.61 | -                                               | qwen35moe 40 blk / 256 exp (8 active)      | 131072 | PolyStrata       |
+| Ornith-1.5-35B                   | 35B       | Q4_K_M     | 20.22 | -                                               | qwen35moe 41 blk / 256 exp (8 active)      | 131072 | PolyStrata       |
+| Mellum2.1-12B-A2.5B-Thinking     | 12B-A2.5B | Q6_K       | 10.13 | -                                               | mellum 28 blk / 64 exp (8 active)          | 131072 | llama.cpp router |
+| LFM2.5-24B-A2B                   | 24B-A2B   | Q6_K       | 18.34 | -                                               | lfm2moe 40 blk / 64 exp (4 active)         | 131072 | PolyStrata       |
+| Nemotron-3.5-Bolt-74B-A9B        | 74B-A9B   | IQ2_XXS    | 20.51 | -                                               | nemotron_h_moe 88 blk / 496 exp (9 active) | 131072 | PolyStrata       |
+| Flint Preview                    | -         | UD-Q4_K_XL | 23.33 | -                                               | flint 49 blk / 256 exp (6 active)          | 131072 | PolyStrata       |
+| Ling-3.0-tiny                    | -         | Q8_0       | 7.83  | -                                               | bailingmoe3 24 blk / 128 exp (8 active)    | 131072 | llama.cpp        |
+| Cyber-Tiel Coder 35B-A3B         | 35B       | UD-Q4_K_M  | 20.61 | MTP Q8_1 dense + Q4_K experts (blk.40) 1.38 GiB | qwen35moe 40 blk / 256 exp (8 active)      | 131072 | PolyStrata       |

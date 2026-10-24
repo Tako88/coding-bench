@@ -1,0 +1,97 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "bench": "A",
+  "calibration": "calibration.json",
+  "cap_seconds": 1800,
+  "cell_mem_cap_mb": 4096,
+  "cell_mem_mechanism": "systemd-run --scope MemoryMax=4096M",
+  "endpoint": null,
+  "finished": "unfinished",
+  "grade": {
+    "detail": "fixed + 600 random expressions",
+    "ok": true
+  },
+  "host": "tako-pc",
+  "killed_at_cap": false,
+  "label": "Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)",
+  "model_pattern": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+  "pi_model": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+  "pi_version": "1.4.0",
+  "python": "3.14.8",
+  "round_manifest": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
+  "route": "cybertiel-q4km",
+  "route_file": "cybertiel-q4km.json",
+  "route_sampling": {
+    "contextWindow": 131072,
+    "maxTokens": 131072,
+    "reasoning": true,
+    "samplingParams": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "temperature": 0.6,
+      "top_k": 20,
+      "top_p": 0.95
+    }
+  },
+  "route_sampling_source": "request",
+  "run": "baseline",
+  "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
+  "sampling": null,
+  "solution_sha256": "e971ac5ccff9f3e77c36efb2781c3d5d15515ea2281c918022261f3cf05e9c5a",
+  "stats": {
+    "calls": {
+      "bash": 5,
+      "edit": 4,
+      "ls": 1,
+      "read": 3,
+      "write": 2
+    },
+    "comp": 0,
+    "duration_ms": 306784,
+    "last": "Both files exist, tests pass. Final answer.\n\nNote the one ambiguity: prose says -8^-2 is 0.015625 but grammar gives -0.015625. I followed the grammar (authorita",
+    "out": 14680,
+    "partial_chars": 0,
+    "reasoning": 0,
+    "rep_turns": 1,
+    "source": "session (completed messages; partial_chars is the unfinished tail)",
+    "turns": 16
+  },
+  "task": "c2_eval_expr",
+  "thinking": "xhigh",
+  "transcript": "2026-10-24T07-06-08-634Z_01a16cbb-2d79-73c3-95e0-cfc002bebb9b.jsonl",
+  "wall_seconds": 307,
+  "warm_up": {
+    "detail": "endpoint ready",
+    "ok": true,
+    "waited": 0.7
+  },
+  "weights": {
+    "arch": "qwen35moe",
+    "blocks": 40,
+    "caveat": "40 blocks, not 41: this quant carries no blk.40, so the MTP head is a separate gguf passed as --draft-model. Its metadata also declares 262144 ctx natively while the engine is launched with --max-context 131072. The file's own general.name is 'Huihui Ornith 1.5 35B A3B Abliterated': it is an Ornith-1.5 abliterated finetune respun as Cyber-Tiel Coder, MIT, base ornith-ai/Ornith-1.5-35B-A3B.",
+    "ctx": 131072,
+    "drafter": {
+      "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/mtp-Cyber-Tiel-Coder-35B-A3B.gguf",
+      "kind": "MTP",
+      "quant": "Q8_1 dense + Q4_K experts (blk.40)",
+      "size_gib": 1.38
+    },
+    "experts": 256,
+    "experts_active": 8,
+    "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/Cyber-Tiel-Coder-35B-A3B-UD-Q4_K_M.gguf",
+    "name": "Cyber-Tiel Coder 35B-A3B",
+    "params": "35B",
+    "quant": "UD-Q4_K_M",
+    "serve": {
+      "expert_profile": "PolyStrata-data/packs/cyber-tiel/expert-profile.txt",
+      "fit_max_tokens": true,
+      "vram_reserve_mib": 2048
+    },
+    "size_gib": 20.61,
+    "source": "gguf metadata: Huihui Ornith-1.5-35B-A3B abliterated, MIT; base ornith-ai/Ornith-1.5-35B-A3B. No Cyber-Tiel repo is recorded in the file.",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  },
+  "when": "2026-10-24T10:11:16"
+}

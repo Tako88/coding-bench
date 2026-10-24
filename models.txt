@@ -11,3 +11,4 @@ ling-q8
 coder-iq1m
 ornith-q4km
 flint-q4kxl
+cybertiel-q4km

@@ -1,0 +1,32 @@
+{
+  "notes": "PolyStrata's Cyber-Tiel Coder through llama-swap (id cyber-tiel-coder-35b-a3b-ud-q4_k_m, port 8081). Served at 131072 ctx although the gguf declares 262144. Sampling is the model card's own (temperature 0.6, top_p 0.95, top_k 20, min_p 0) and is what models.json sends, so the sampler table should read 'request'. Cold start is the usual long PolyStrata one, and the swap frees the card after the idle timeout.",
+  "pi_model": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+  "thinking": "xhigh",
+  "weights": {
+    "arch": "qwen35moe",
+    "blocks": 40,
+    "caveat": "40 blocks, not 41: this quant carries no blk.40, so the MTP head is a separate gguf passed as --draft-model. Its metadata also declares 262144 ctx natively while the engine is launched with --max-context 131072. The file's own general.name is 'Huihui Ornith 1.5 35B A3B Abliterated': it is an Ornith-1.5 abliterated finetune respun as Cyber-Tiel Coder, MIT, base ornith-ai/Ornith-1.5-35B-A3B.",
+    "ctx": 131072,
+    "drafter": {
+      "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/mtp-Cyber-Tiel-Coder-35B-A3B.gguf",
+      "kind": "MTP",
+      "quant": "Q8_1 dense + Q4_K experts (blk.40)",
+      "size_gib": 1.38
+    },
+    "experts": 256,
+    "experts_active": 8,
+    "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/Cyber-Tiel-Coder-35B-A3B-UD-Q4_K_M.gguf",
+    "name": "Cyber-Tiel Coder 35B-A3B",
+    "params": "35B",
+    "quant": "UD-Q4_K_M",
+    "serve": {
+      "expert_profile": "PolyStrata-data/packs/cyber-tiel/expert-profile.txt",
+      "fit_max_tokens": true,
+      "vram_reserve_mib": 2048
+    },
+    "size_gib": 20.61,
+    "source": "gguf metadata: Huihui Ornith-1.5-35B-A3B abliterated, MIT; base ornith-ai/Ornith-1.5-35B-A3B. No Cyber-Tiel repo is recorded in the file.",
+    "stack": "PolyStrata",
+    "stack_id": "strata-poly"
+  }
+}

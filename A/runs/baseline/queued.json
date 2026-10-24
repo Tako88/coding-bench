@@ -4,43 +4,45 @@
     {
       "base_url": "http://127.0.0.1:8001/v1",
       "cap_seconds": 1800,
-      "label": "Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)",
-      "model_pattern": "llama-local/ling-3.0-tiny-q8_0",
-      "pi_model": "llama-local/ling-3.0-tiny-q8_0",
-      "route": "ling-q8",
+      "label": "Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)",
+      "model_pattern": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+      "pi_model": "polystrata-cybertiel/cyber-tiel-coder-35b-a3b-ud-q4_k_m",
+      "route": "cybertiel-q4km",
       "sampling": {
         "min_p": 0.0,
         "presence_penalty": 0.0,
         "repeat_penalty": 1.0,
-        "temperature": 1.0,
+        "temperature": 0.6,
         "top_k": 20,
         "top_p": 0.95
       },
-      "thinking": "high",
+      "thinking": "xhigh",
       "weights": {
-        "arch": "bailingmoe3",
-        "blocks": 24,
-        "caveat": "the gguf declares no parameter count; its general.size_label is the string '128x1.0B', which is an expert layout, not a count. Architecture is 18 KDA linear-attention + 6 MLA blocks.",
+        "arch": "qwen35moe",
+        "blocks": 40,
+        "caveat": "40 blocks, not 41: this quant carries no blk.40, so the MTP head is a separate gguf passed as --draft-model. Its metadata also declares 262144 ctx natively while the engine is launched with --max-context 131072. The file's own general.name is 'Huihui Ornith 1.5 35B A3B Abliterated': it is an Ornith-1.5 abliterated finetune respun as Cyber-Tiel Coder, MIT, base ornith-ai/Ornith-1.5-35B-A3B.",
         "ctx": 131072,
-        "drafter": null,
-        "experts": 128,
-        "experts_active": 8,
-        "file": "/home/tako/dev/llama.cpp/models/Ling-3.0-tiny/Ling-3.0-tiny-Q8_0.gguf",
-        "name": "Ling-3.0-tiny",
-        "params": null,
-        "quant": "Q8_0",
-        "serve": {
-          "batch": "1024/512",
-          "cache_k": "f16",
-          "cache_v": "f16",
-          "flash_attn": true,
-          "gpu_layers": 99,
-          "min_p": 0
+        "drafter": {
+          "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/mtp-Cyber-Tiel-Coder-35B-A3B.gguf",
+          "kind": "MTP",
+          "quant": "Q8_1 dense + Q4_K experts (blk.40)",
+          "size_gib": 1.38
         },
-        "size_gib": 7.83,
-        "source": "inclusionAI; gguf license MIT, source repo not recorded",
-        "stack": "llama.cpp",
-        "stack_id": "llama-cpp"
+        "experts": 256,
+        "experts_active": 8,
+        "file": "/home/tako/dev/PolyStrata-data/models/cyber-tiel/Cyber-Tiel-Coder-35B-A3B-UD-Q4_K_M.gguf",
+        "name": "Cyber-Tiel Coder 35B-A3B",
+        "params": "35B",
+        "quant": "UD-Q4_K_M",
+        "serve": {
+          "expert_profile": "PolyStrata-data/packs/cyber-tiel/expert-profile.txt",
+          "fit_max_tokens": true,
+          "vram_reserve_mib": 2048
+        },
+        "size_gib": 20.61,
+        "source": "gguf metadata: Huihui Ornith-1.5-35B-A3B abliterated, MIT; base ornith-ai/Ornith-1.5-35B-A3B. No Cyber-Tiel repo is recorded in the file.",
+        "stack": "PolyStrata",
+        "stack_id": "strata-poly"
       }
     }
   ],
@@ -1934,11 +1936,58 @@
         }
       ],
       "replaced": "2026-10-22T18:06:33"
+    },
+    {
+      "entries": [
+        {
+          "base_url": "http://127.0.0.1:8001/v1",
+          "cap_seconds": 1800,
+          "label": "Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)",
+          "model_pattern": "llama-local/ling-3.0-tiny-q8_0",
+          "pi_model": "llama-local/ling-3.0-tiny-q8_0",
+          "route": "ling-q8",
+          "sampling": {
+            "min_p": 0.0,
+            "presence_penalty": 0.0,
+            "repeat_penalty": 1.0,
+            "temperature": 1.0,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "thinking": "high",
+          "weights": {
+            "arch": "bailingmoe3",
+            "blocks": 24,
+            "caveat": "the gguf declares no parameter count; its general.size_label is the string '128x1.0B', which is an expert layout, not a count. Architecture is 18 KDA linear-attention + 6 MLA blocks.",
+            "ctx": 131072,
+            "drafter": null,
+            "experts": 128,
+            "experts_active": 8,
+            "file": "/home/tako/dev/llama.cpp/models/Ling-3.0-tiny/Ling-3.0-tiny-Q8_0.gguf",
+            "name": "Ling-3.0-tiny",
+            "params": null,
+            "quant": "Q8_0",
+            "serve": {
+              "batch": "1024/512",
+              "cache_k": "f16",
+              "cache_v": "f16",
+              "flash_attn": true,
+              "gpu_layers": 99,
+              "min_p": 0
+            },
+            "size_gib": 7.83,
+            "source": "inclusionAI; gguf license MIT, source repo not recorded",
+            "stack": "llama.cpp",
+            "stack_id": "llama-cpp"
+          }
+        }
+      ],
+      "replaced": "2026-10-24T08:21:02"
     }
   ],
   "manifest_sha256": "ceebdb46fae78036d0d99e3b11803686261c83df40d9383ccd5da05c3b0e4211",
   "run": "baseline",
   "runner_sha256": "870090f96f8e9b66e2173e529e77b60d32c034d7c542d574d8888b0423bb583d",
   "started": "2026-10-18T19:01:47",
-  "updated": "2026-10-24T08:21:02"
+  "updated": "2026-10-24T10:05:07"
 }
