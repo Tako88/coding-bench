@@ -197,8 +197,14 @@ def newest_session(cell):
 
 
 def stats(path):
-    """Parse a pi session file: turns, tokens, tool calls, compactions, repeats."""
-    turns = out = reasoning = comp = reps = duration_ms = 0
+    """Parse a pi session file: turns, tokens, tool calls, compactions, repeats.
+
+    `tool_ms` is measured, not inferred: each tool result records how long the tool
+    itself ran. Summing those is what separates "spent the time thinking" from
+    "spent it in bash", which wall-minus-generation cannot do once a cell is killed
+    mid-turn and its last message never records a duration.
+    """
+    turns = out = reasoning = comp = reps = duration_ms = tool_ms = 0
     calls = collections.Counter()
     last = ""
     if path and os.path.exists(path):
@@ -216,6 +222,9 @@ def stats(path):
             if rec.get("type") != "message":
                 continue
             msg = rec.get("message") or {}
+            if msg.get("role") == "toolResult":
+                tool_ms += msg.get("durationMs") or 0
+                continue
             if msg.get("role") != "assistant":
                 continue
             turns += 1
@@ -236,7 +245,8 @@ def stats(path):
             if windows and windows.most_common(1)[0][1] > 1:
                 reps += 1
     return {"turns": turns, "out": out, "reasoning": reasoning, "calls": dict(calls),
-            "comp": comp, "rep_turns": reps, "duration_ms": duration_ms, "last": last}
+            "comp": comp, "rep_turns": reps, "duration_ms": duration_ms,
+            "tool_ms": tool_ms, "last": last}
 
 
 def partial_chars(path):
@@ -1150,8 +1160,34 @@ def table_for(run):
     return render_table(headers, rows), note
 
 
+def transcript_tool_ms(cell, meta):
+    """Tool time re-measured from a cell's transcript, for metas that predate tool_ms.
+
+    Same field `stats` now sums at cell time, read back off disk so a run recorded
+    before the field existed still fills its `tools` column instead of a dash.
+    """
+    path = os.path.join(cell, "sessions", meta.get("transcript") or "")
+    if not os.path.isfile(path):
+        return None
+    total = 0
+    for line in read(path).splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        if rec.get("type") != "message":
+            continue
+        msg = rec.get("message") or {}
+        if msg.get("role") == "toolResult":
+            total += msg.get("durationMs") or 0
+    return total
+
+
 def cost_table(run):
-    """What each route spent: output tokens, generation time, wall clock, the gap.
+    """What each route spent: output tokens, generation time, wall clock, tool time.
 
     Read from the same meta.json the score table reads, so the two cannot disagree
     about which cells they cover.
@@ -1159,9 +1195,18 @@ def cost_table(run):
     `gen` is the sum of the completed assistant messages' durationMs, which includes
     prefill: `tok/s` is out/gen, "output tokens per unit of generation time", not
     decode speed. A long test-output history lowers it without the model decoding
-    any slower. `tools` is wall - gen: pi startup, the model's own bash and test
-    runs, and any final turn that never completed. That gap is the column that
-    separates a fast model from a fast model that spends half an hour flailing.
+    any slower.
+
+    `tools` is measured, not a residual: every tool result carries its own
+    durationMs, and summing those is the only way to tell time spent in bash from
+    time spent generating. wall - gen cannot do it -- an earlier version of this
+    column did exactly that, and reported 1794s of "tooling" for a cell that was
+    killed mid-turn with 131k characters of unfinished output and had in fact run
+    1.0s of tools. The killed turn never recorded a duration, so wall counts it and
+    gen does not.
+
+    Both `out` and `gen` are floors for a capped cell, since the turn it died in
+    never landed; they carry a `+` to say so.
 
     The rate is only meaningful inside one run: same host, same engine build, same
     sampler, cells run one at a time. Never compare it across runs -- a server under
@@ -1178,8 +1223,9 @@ def cost_table(run):
     rows = []
     for route_name, entry in run_routes(run):
         rdir = route_dir(run, route_name)
-        out = gen_ms = wall = 0
-        partial = False
+        out = gen_ms = wall = tool_ms = 0
+        partial = capped = False
+        tools_known = True
         n = 0
         for task in TASKS:
             meta = os.path.join(rdir, task, "meta.json")
@@ -1192,6 +1238,14 @@ def cost_table(run):
             gen_ms += st.get("duration_ms") or 0
             wall += m.get("wall_seconds") or 0
             partial = partial or bool(st.get("partial_chars"))
+            capped = capped or bool(m.get("killed_at_cap"))
+            t = st.get("tool_ms")
+            if t is None:
+                t = transcript_tool_ms(os.path.dirname(meta), m)
+            if t is None:
+                tools_known = False
+            else:
+                tool_ms += t
         if not n:
             continue
         gen = int(round(gen_ms / 1000.0))
@@ -1199,15 +1253,18 @@ def cost_table(run):
         no_gen = gen_ms == 0
         rows.append([run_label(run, route_name, entry), "%d/%d" % (n, len(TASKS)),
                      kfmt(out) + ("+" if partial else ""),
-                     "-" if no_gen else "%ds" % gen, "%ds" % wall,
-                     "-" if no_gen else "%ds" % max(0, wall - gen),
+                     "-" if no_gen else "%ds%s" % (gen, "+" if capped else ""),
+                     "%ds" % wall,
+                     "%.1fs" % (tool_ms / 1000.0) if tools_known else "-",
                      "-" if no_gen or not out else "%.1f" % (out / (gen_ms / 1000.0))])
     if not rows:
         return "", ""
     note = ("`gen` = sum of completed assistant-message durations (prefill + decode); "
-            "`tools` = wall - gen (pi startup, the model's own bash and test runs, "
-            "unfinished final turns); `tok/s` = out / gen. One run, one host, one "
-            "engine build: compare these rows with each other, never with another run.")
+            "`tools` = measured tool-execution time, summed from each tool result's "
+            "own duration; `tok/s` = out / gen. `+` on `out` or `gen` = a cell was "
+            "killed at the cap, so the turn it died in never landed and that figure "
+            "is a floor. One run, one host, one engine build: compare these rows with "
+            "each other, never with another run.")
     return render_table(headers, rows), note
 
 
