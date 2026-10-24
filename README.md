@@ -124,8 +124,10 @@ a missing `ValueError` rather than a wrong algorithm.
 
 One sample per cell is a real limit. Earlier runs of this suite against the same weights
 have flipped cells both ways, so treat a single point as a draw from a distribution, not a
-verdict. Per-cell detail, the samplers each model ran under, and the weights table are in
-`A/RESULTS-baseline.md` — regenerate it with `python3 run.py table --name baseline --write`.
+verdict. Per-cell detail, what each model spent (`### cost`: output tokens, generation time,
+wall clock, and the gap between them), the samplers each model ran under, and the weights
+table are in `A/RESULTS-baseline.md` — regenerate it with
+`python3 run.py table --name baseline --write`.
 
 ## Benchmarks and runs
 
@@ -207,7 +209,12 @@ The display name in the score table is composed from that block (`name`, plus
 It was free text before, and of the nine routes three had dropped their quant and one
 had never been named at all. `run.py table --write` also emits a `### models` table
 (quant, size, drafter, architecture, context) beyond the `### samplers` one, so a results
-file says what the weights were and what sampler they ran under. Neither table carries prose: file
+file says what the weights were and what sampler they ran under, and a `### cost` table
+(output tokens, generation seconds, wall seconds, and wall - gen as `tools`) so it says
+what the run cost as well as what it scored. The cost table's `tok/s` is only a
+within-run figure: same host, same engine build, cells one at a time. A different quant, a
+busier server or another box moves it, so it is a ranking inside one run and nothing else.
+None of these tables carry prose: file
 paths, source repos and per-file caveats stay in `routes/<name>.json`, because a
 sentence in a cell wraps in a terminal and the continuation reads like another row. Rename a route after its
 cells ran and the table shows the route file's name while saying that the cells were

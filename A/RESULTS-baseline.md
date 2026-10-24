@@ -18,6 +18,26 @@
 
 `*` = killed at the 1800s cap, file on disk graded afterwards
 
+### cost
+
+| model                                                                     | cells | out     | gen   | wall  | tools | tok/s |
+|---------------------------------------------------------------------------|-------|---------|-------|-------|-------|-------|
+| Qwen3.8-27B (ASCII-Condensed) UD-IQ4_XS + MTP (kv-stream fork, 98304 ctx) | 5/5   | 157.4k  | 4055s | 4064s | 9s    | 38.8  |
+| Qwen3.8-Flash-Next GSQ-RCO Coder IQ1_M (PolyStrata, 98304 ctx)            | 5/5   | 94.4k   | 2475s | 2481s | 6s    | 38.1  |
+| Qwen3.8-27B IQ3_XXS + MTP (llama.cpp router, 65536 ctx)                   | 5/5   | 125.1k+ | 5157s | 7126s | 1969s | 24.3  |
+| Swift-1.5-Qwen3.8-27B GSQ-RCO IQ3_XXS + MTP (llama.cpp router, 98304 ctx) | 5/5   | 125.4k  | 4885s | 4988s | 103s  | 25.7  |
+| Qwen3.6-35B-A3B REAP-48 v2 Q4_K_M + DFlash (llama.cpp router, 131072 ctx) | 5/5   | 115.2k  | 2692s | 2695s | 3s    | 42.8  |
+| Qwen3.6-35B-A3B UD-Q4_K_M (PolyStrata, 131072 ctx)                        | 5/5   | 110.4k+ | 2674s | 4470s | 1796s | 41.3  |
+| Ornith-1.5-35B Q4_K_M (PolyStrata, 131072 ctx)                            | 5/5   | 72.3k   | 1353s | 1358s | 5s    | 53.4  |
+| Mellum2.1-12B-A2.5B-Thinking Q6_K (llama.cpp router, 131072 ctx)          | 5/5   | 131.6k  | 1884s | 1886s | 2s    | 69.8  |
+| LFM2.5-24B-A2B Q6_K (PolyStrata, 131072 ctx)                              | 5/5   | 223.5k+ | 5980s | 6182s | 202s  | 37.4  |
+| Nemotron-3.5-Bolt-74B-A9B IQ2_XXS (PolyStrata, 131072 ctx)                | 5/5   | 126.3k+ | 6162s | 6174s | 12s   | 20.5  |
+| Flint Preview UD-Q4_K_XL (PolyStrata, 131072 ctx)                         | 5/5   | 67.9k   | 1677s | 1681s | 4s    | 40.5  |
+| Ling-3.0-tiny Q8_0 (llama.cpp, 131072 ctx)                                | 5/5   | 165.0k  | 2122s | 2124s | 2s    | 77.8  |
+| Cyber-Tiel Coder 35B-A3B UD-Q4_K_M + MTP (PolyStrata, 131072 ctx)         | 5/5   | 56.5k   | 1162s | 1167s | 5s    | 48.6  |
+
+`gen` = sum of completed assistant-message durations (prefill + decode); `tools` = wall - gen (pi startup, the model's own bash and test runs, unfinished final turns); `tok/s` = out / gen. One run, one host, one engine build: compare these rows with each other, never with another run.
+
 ### samplers
 
 | model                                                                     | sampling from | temperature | top_p | top_k | min_p | presence | repeat | thinking | cap   |

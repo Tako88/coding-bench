@@ -1150,6 +1150,67 @@ def table_for(run):
     return render_table(headers, rows), note
 
 
+def cost_table(run):
+    """What each route spent: output tokens, generation time, wall clock, the gap.
+
+    Read from the same meta.json the score table reads, so the two cannot disagree
+    about which cells they cover.
+
+    `gen` is the sum of the completed assistant messages' durationMs, which includes
+    prefill: `tok/s` is out/gen, "output tokens per unit of generation time", not
+    decode speed. A long test-output history lowers it without the model decoding
+    any slower. `tools` is wall - gen: pi startup, the model's own bash and test
+    runs, and any final turn that never completed. That gap is the column that
+    separates a fast model from a fast model that spends half an hour flailing.
+
+    The rate is only meaningful inside one run: same host, same engine build, same
+    sampler, cells run one at a time. Never compare it across runs -- a server under
+    a different load or a different quant moves it. The `cells n/5` column is there
+    so a partial route's aggregate is not read against a full one's.
+
+    out/gen is sum over sum, not a mean of per-message rates: short messages are
+    prefill-dominated, so the two disagree by a lot (ling-q8: 77.8 aggregate against
+    a 56.9 median message) and the aggregate is the one that answers what the run
+    cost. The printed footnote says nothing about this on purpose -- the formula
+    beside it already states the weighting.
+    """
+    headers = ["model", "cells", "out", "gen", "wall", "tools", "tok/s"]
+    rows = []
+    for route_name, entry in run_routes(run):
+        rdir = route_dir(run, route_name)
+        out = gen_ms = wall = 0
+        partial = False
+        n = 0
+        for task in TASKS:
+            meta = os.path.join(rdir, task, "meta.json")
+            if not os.path.exists(meta):
+                continue
+            m = json.loads(read(meta))
+            st = m.get("stats") or {}
+            n += 1
+            out += st.get("out") or 0
+            gen_ms += st.get("duration_ms") or 0
+            wall += m.get("wall_seconds") or 0
+            partial = partial or bool(st.get("partial_chars"))
+        if not n:
+            continue
+        gen = int(round(gen_ms / 1000.0))
+        # an old meta with no duration_ms is not "instantly generated": say nothing
+        no_gen = gen_ms == 0
+        rows.append([run_label(run, route_name, entry), "%d/%d" % (n, len(TASKS)),
+                     kfmt(out) + ("+" if partial else ""),
+                     "-" if no_gen else "%ds" % gen, "%ds" % wall,
+                     "-" if no_gen else "%ds" % max(0, wall - gen),
+                     "-" if no_gen or not out else "%.1f" % (out / (gen_ms / 1000.0))])
+    if not rows:
+        return "", ""
+    note = ("`gen` = sum of completed assistant-message durations (prefill + decode); "
+            "`tools` = wall - gen (pi startup, the model's own bash and test runs, "
+            "unfinished final turns); `tok/s` = out / gen. One run, one host, one "
+            "engine build: compare these rows with each other, never with another run.")
+    return render_table(headers, rows), note
+
+
 def models_table(run):
     """Provenance for the rows above: the weights, the drafter and the stack.
 
@@ -1211,6 +1272,11 @@ def cmd_table(args):
         print(table)
         if cap_note:
             print("\n" + cap_note)
+        costs, cost_note = cost_table(run)
+        if costs:
+            print("\n### cost\n")
+            print(costs)
+            print("\n" + cost_note)
         samplers = sampler_table(run)
         if samplers:
             print("\n### samplers\n")
@@ -1222,6 +1288,8 @@ def cmd_table(args):
         if args.write:
             out = os.path.join(bench_dir(), "RESULTS-%s.md" % run)
             body = "# Results: run %s (benchmark %s)\n\n%s\n\n%s\n" % (run, BENCH, table, cap_note)
+            if costs:
+                body += "\n### cost\n\n%s\n\n%s\n" % (costs, cost_note)
             if samplers:
                 body += "\n### samplers\n\n%s\n" % samplers
             if models:
